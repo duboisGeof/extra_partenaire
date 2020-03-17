@@ -29,7 +29,7 @@ class DefaultController extends Controller
 		//Page de connexion/inscription
 		/*else{
 			return $this->redirectToRoute('inscription');
-		}     */   
+		}  */
     }
 
 }
