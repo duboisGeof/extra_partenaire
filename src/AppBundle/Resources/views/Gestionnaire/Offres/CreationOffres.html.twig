@@ -1,0 +1,33 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets
+			'@AppBundle/Resources/public/css/datepicker.css' 		
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="r_cnx_colonneG full">							
+    <h2> {{title}}</h2>
+        <div class="block">
+            <br>
+            {{ form(form) }}
+        </div>
+</div>
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+        '@AppBundle/Resources/public/js/datepicker.min.js'
+        '@AppBundle/Resources/public/js/datepicker.js'
+    %}
+	
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

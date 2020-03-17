@@ -1,0 +1,29 @@
+
+{% block body %}
+<div class="contenu-dynamique">
+			<div class="modal-body">
+				{{ form_start(form, {'attr': {'id': 'form_date_reception'}}) }}
+				{{ form_errors(form)}}
+		
+				<table>
+				
+					<p>{{nouvDossier}} nouveau(x) dossier(s) arrivé(s). Veuillez saisir la date de réception.</p>
+				
+					<tr>
+						<td>{{ form_label(form.Date_reception) }}</td><td>{{ form_widget(form.Date_reception) }}</td>{{ form_row(form.Date_reception) }}
+					</tr>
+					{#<tr>
+						<td colspan="3" id='modal_date'>
+						
+						<span>Choisissez la (ou les) semaine(s) que vous vouliez. <br> (Maintenir la touche "ctrl" pour sélectionner plusieurs) </span>
+							{{ form_widget(form.Liste_Semaine) }}	
+						</td>
+					</tr>#}
+				</table>
+			</div>
+			<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+					<button type="submit"  class="btn btn-primary btn-valider-date">Enregistrer</button>
+			</div>{{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets	filter='cssrewrite'
+			'@AppBundle/Resources/public/css/datatableBoostrap.css'
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 
+			'@AppBundle/Resources/public/css/datepicker.css' 
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+
+<div class="r_cnx_colonneG full">							
+	<h2> Gestion des dossiers des partenaires</h2>
+<div class="block" style="width:1250px">
+<p>
+			<table id='tablepanier' class='table-striped table-bordered'>
+			<thead>
+				<tr>
+				<th class="text-center"> Partenaires </th>
+				<th class="text-center"> Dernière transmision</th>
+				<th class="text-center"> Nouveaux dossiers </th>
+				</tr>
+			</thead>
+			<tbody>{% for transmission in transmissions %}
+
+			<tr>
+
+				<td class="text-center"><label>{{transmission.nomStructure}}</label></td>
+				<td class="text-center">{{transmission.lastDate|date("d/m/Y") }}  </td>
+				<td class="text-center"><a class='btn btn-primary btn-modal id{{transmission.partenaire_id }}' data-toggle="modal" data-target="Modal_Date_reception" style='width:240px'>Consulter les dossiers <span class="badge badge-pill badge-light notification">{{transmission.nbDossier}}</span><span class="sr-only">unread messages</span> </a></td>
+				
+			</tr>
+
+			{% endfor %}
+			</tbody>
+			</table>
+			</p>
+
+
+<div id="Modal_Date_reception" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content ">
+			<div class="modal-header body-info text-center">
+				<h2 class="modal-title w-100 font-weight-bold">Détail du Partenaire</h2>
+			</div>
+			<div class="body-infos"></div>
+				
+		</div>
+	</div>
+</div>
+ 
+	
+
+
+</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+		'@AppBundle/Resources/public/js/dataTables.buttons.min.js'
+		'@AppBundle/Resources/public/js/moment.min.js'
+		'@AppBundle/Resources/public/js/datepicker.min.js'
+        '@AppBundle/Resources/public/js/datepicker.js'
+		'@AppBundle/Resources/public/js/config_validation.js'
+		'@AppBundle/Resources/public/js/transmission_dossier.js'
+		'@AppBundle/Resources/public/js/jqueryValidate.min.js'
+		
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,20 @@
+/* css propre (Sylvie) */
+
+
+td a {
+  text-decoration: none !important;
+  cursor: pointer;
+  color:#226B9B!important;
+}
+
+td {
+	border: none !important;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.table-color-red{
+	color:#A20307;
+}

@@ -1,0 +1,33 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<div class="r_cnx_colonneG full">							
+	<h2>Commandez vos supports</h2>
+		<div class="block">
+		<br>
+		
+		{{ form_start(form) }}
+
+			   <table><tr>
+			   			<td>{{ form_label(form.depliant, "Intitulé du support : ") }}</td>
+						<td>{{ form_widget(form.depliant) }}</td>
+					  </tr>
+					  <tr>
+					  	<td>{{ form_label(form.quantiteD, "Quantité souhaitée (max 200 ex.) : ") }}</td>
+						<td>{{ form_widget(form.quantiteD) }}</td>		 
+				</table>
+				
+				 {#<table><tr><td>{{form_widget(form.ajouteD)}}</td>
+				 	<td>{{form_rest(form)}}</td></tr></table>#}
+			 {#<div class="center"> {{form_row(form.commande,{'attr':{'class':'btn btn-primary' }})}}#}                         
+
+		{{form_end(form)}} 
+		
+		<div class='droite'>
+				<br>
+				<a href={{path('commande')}}>Ajouter un support</a>
+				<a href={{path('panierCommandeSupport')}}>Visualiser la commande de supports</a>
+
+		</div>
+
+</div>
+{% endblock %}          

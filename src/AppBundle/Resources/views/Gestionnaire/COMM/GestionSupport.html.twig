@@ -1,0 +1,40 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+ 
+<div class="r_cnx_colonneG full">							
+	<h2> Commande numero: XXXX &nbsp &nbsp &nbsp  Date de recensement du besoin 01/07/2018</h2> 
+ <div class="block"> 
+	<div>
+	<br>
+	 <table>
+		<tr>
+			<td>Nom - prénom du Référent partenaire :</td>
+		</tr>
+		<tr>
+			<td>N° tél du Référent partenaire :</td>
+		</tr>
+		<tr>				   
+			<td>Adresse email :</td>
+		</tr>
+		<tr>
+			<td>Désignation du partenaire</td>
+		</tr>
+	   </table>
+	   <br> 
+	   <table class='tablepanier'><thead>
+		<tr><td>Intitulé du support</td><td>Quantité souhaitée</td><td>Quantité livrée</td></tr></thead>
+		<tr><td>Apprenti vos relations avec l'Assurance maladie</td><td>50</td><td><input type='text' maxlength=3 size=3></td></tr>
+		<tr><td>M't dents : 132 poses et autant de bonnes raisons de profiter des rendez-vous gratuits</td><td>100</td><td><input type='text' maxlength=3 size=3></td></tr>
+		<tr><td>Affiche "promotion du compte ameli"</td><td>150</td><td><input type='text' maxlength=3 size=3></td></tr>
+		<tr><td>M't dents : 1er Rendez vous gratuit</td><td>200</td><td><input type='text' maxlength=3 size=3></td></tr>
+	   </table>
+	   <br>
+
+	   <div class='droite'>
+		<br>
+			<a href=''>Valider la commande de supports</a>
+	</div>
+   </div>
+ </div>
+</div>
+{% endblock %}

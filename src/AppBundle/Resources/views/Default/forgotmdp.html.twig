@@ -1,0 +1,35 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+
+{% for flashMessage in app.session.flashbag.get('error') %}
+	<div class="alert alert-danger" role="alert">
+	    {{ flashMessage }}
+	</div>
+{% endfor %}
+
+<div class="r_cnx_colonneG full">							
+	<h2>Récupération du mot de passe</h2>
+	<div class="block">
+		<form name="connexionCompteForm" id="connexioncompte_2connexionCompteForm" method="post" action="{{ path("fos_user_resetting_send_email") }}" class="r_cnx_form">	
+			<center><span class="wi50">
+				<input id="username" type="text" value="" placeholder="Adresse Mail" title="Adresse Mail" name="username" class="form-control" tabindex="3" />
+			</center>
+			<br>
+			<div class="row justify-content-center">
+				<button id="trouver_mail" type="submit" class="btn btn-primary trouver_mail" >Valider</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+        '@AppBundle/Resources/public/js/dataTables.buttons.min.js'
+		'@AppBundle/Resources/public/js/gestionCompte.js'
+	%}
+	<script src="{{ asset_url }}" charset="UTF-8"></script>
+	{% endjavascripts %}
+{% endblock %}

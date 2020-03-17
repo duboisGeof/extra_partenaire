@@ -1,0 +1,22 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<div class="r_cnx_colonneG full">
+	<h2>Réponse à vos questions - Rédiger une question</h2>
+	<div class="block">
+		{{form_start(form)}}
+		{{ form_widget(form) }}
+	</div>
+	<div class="row justify-content-center">
+		<button type="submit" class="btn btn-primary">Envoyer</button>
+	</div>
+	{{form_end(form)}}
+
+	{% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

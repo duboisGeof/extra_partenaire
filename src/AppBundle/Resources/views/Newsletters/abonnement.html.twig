@@ -1,0 +1,29 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<div class="alert alert-success">
+	Votre demande à bien été prise en compte.
+</div>
+<div class="r_cnx_colonneG full">
+	<h2>Abonnement/Désabonnement à la newsletter</h2>
+	<div class="block">		
+		<span id='textNewsletter'>
+		{% if isNewsletter == true %}
+			Vous êtes abonné à la newsletter, voulez-vous vous désinscrire ?
+		{% else %}
+			Vous n'êtes pas abonné à la newsletter, voulez-vous vous inscrire ?
+		{% endif %}
+		</span>
+		<button type="button" class="btn btn-success btn-sm actionNewsletter id{{id}}" id="abonnement">oui</button>
+		<button type="button" class="btn btn-danger btn-sm actionNewsletter id{{id}}" id="desabonnement">non</button>
+ 	</div> 
+</div>
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+		'@AppBundle/Resources/public/js/datatable.min.js'
+		'@AppBundle/Resources/public/js/newsletter.js'
+	%}
+	<script src="{{ asset_url }}" charset="UTF-8"></script>
+	{% endjavascripts %}
+{% endblock %}

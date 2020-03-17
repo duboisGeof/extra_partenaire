@@ -1,0 +1,137 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'@AppBundle/Resources/public/css/datatableBoostrap.css'
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css'
+			'@AppBundle/Resources/public/css/datepicker.css' 
+
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="r_cnx_colonneG full">								
+	<h2>Le récapitulatif annuel de vos dossiers transmis </h2>
+
+			<table id="Recapitulatif" class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th class='no_export'></th>
+						<th class="text-center">Nom patro.</th>
+						<th class="text-center">Nom marital</th>
+						<th class="text-center">Prénom</th>
+						<th class="text-center">Nom agent...</th>
+						<th class="text-center">Date de naissance</th>
+						<th class="text-center">Nature demande</th>
+						<th class="text-center">Numéro dossier</th>
+						<th class="text-center">Téléphone</th>
+						<th class="text-center">Observations</th>
+						<th class="text-center">Date d'instruction</th>
+						<th class="text-center">Délai. traitement</th>
+						<th class="text-center">Décision</th>
+						<th class="text-center">N°ordre AME ou archivage GED</th>
+						<th class="text-center">Observations Part. </th>
+						<th class="text-center">Observations inter... </th>
+						<th class="text-center">agentCPAM</th>
+						<th class="text-center">Date réception</th>
+						{#<th class="text-center">Date de transmission</th>#}
+						{#<th class="text-center">Semaine de dépôt</th>#}
+						<th class="text-center no_export">Question pour la CPAM</th>
+					</tr>
+				</thead>
+				<tbody>{% for transmission in transmissions %}
+					
+					<tr>
+						<td><a class="{{transmission.id}}" data-toggle="modal" data-target="#myModal{{transmission.id}}"><font color=#226B9B>&#128269;</a></td>
+						<td class="text-center">{{transmission.nom_patro}}</td>
+						<td class="text-center">{{transmission.nom_mari}}</td>
+						<td class="text-center">{{transmission.prenom}}</td>
+						<td class="text-center">{{transmission.agent}}</td>
+						<td class="text-center">{{transmission.naissance|date("d/m/Y") }}</td>
+						<td class="text-center">{{transmission.demande_id}}</td>
+						<td class="text-center">{{transmission.numDossier}}</td>
+						<td class="text-center">{{transmission.tel}}</td>
+						<td class="text-center">{{transmission.observation}}</td>
+						<td class="text-center">{% if(transmission.dateInstruction)!=null %}{{transmission.dateInstruction|date("d/m/Y") }}{% endif %}</td>
+						<td class="text-center">{{ transmission.delai }} j</td>
+						<td class="text-center">{{transmission.decision}}</td>
+						<td class="text-center">{{transmission.ordreArchivage}}</td>
+						<td class="text-center">{{transmission.observationPart}}</td>
+						<td class="text-center">{{transmission.observationInter}}</td>
+						<td class="text-center">{{transmission.agentCPAM}}</td>
+						<td class="text-center">{{transmission.dateReception|date("d/m/Y") }}</td>
+						{#<td class="text-center">{{transmission.dateTransmission|date("d/m/Y")}}</td>#}
+						{#<td class="text-center">{{transmission.numeroSemaine}}</td>#}
+						{#<td><a class="btn btn-primary QuestionDossier id{{transmission.id}}">FAQ</a></td>#}
+						<td class="text-center"><a href="{{ path('RedigerQuestion',{id:transmission.id}) }}">&#63;</a></td>
+					</tr>
+					
+					{% endfor %}
+				</tbody>
+			</table>
+{% for transmission in transmissions %}
+											<!-- Modal -->
+  <div class="modal fade" id="myModal{{transmission.id}}" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h2 class="modal-title w-100 font-weight-bold">Ligne Détaillée</h2>
+        </div>
+        <div class="modal-body">
+			<table>
+		  	<tr><td><label class="indication">Nom patronyme :     </label></td><td><span>{{transmission.nom_patro}}</span></td></tr>	
+			<tr><td><label class="indication">Nom marital :       </label></td><td><span>{{transmission.nom_mari}}</span></td></tr>
+			<tr><td><label class="indication">Prénom :       </label></td><td><span>{{transmission.prenom}}</span></td></tr>
+			<tr><td><label class="indication">Date de naissance :         </label></td><td><span>{{transmission.naissance|date("d/m/Y")}}</span></td></tr>
+			<tr><td><label class="indication">Téléphone du bénéficiaire:      </label></td><td><span>{{transmission.tel}}</span></td></tr>
+			<tr><td><label class="indication">Nom de l'agent instructeur (partenaire):       </label></td><td><span>{{transmission.agent}}</span></td></tr>
+			<tr><td><label class="indication">Nature de la demande :      </label></td><td><span>{{transmission.demande_id}}</span></td></tr>
+			<tr><td><label class="indication">Numéro de dossier :      </label></td><td><span>{{transmission.numDossier}}</span></td></tr>
+			
+			<tr><td><label class="indication">Observations du partenaire :       </label></td><td><span>{{transmission.observation}}</span></td></tr>
+			<tr><td><label class="indication">Date d'instruction :       </label></td><td><span>{{transmission.dateInstruction|date("d/m/Y")}}</span></td></tr>
+			<tr><td><label class="indication">Délai de traitement :       </label></td><td><span>{{ transmission.delai }} j</span></td></tr>
+			<tr><td><label class="indication">Décision :       </label></td><td><span>{{transmission.decision}}</span></td></tr>
+			<tr><td><label class="indication">N°ordre AME ou archivage GED :        </label></td><td><span>{{transmission.ordreArchivage}}</span></td></tr>
+			<tr><td><label class="indication">Observations à destination du partenaire :        </label></td><td><span>{{transmission.observationPart}}</span></td></tr>
+			<tr><td><label class="indication">Observations inter. services :         </label></td><td><span></span></td></tr>
+			<tr><td><label class="indication">Nom de l'agent (CPAM) :       </label></td><td><span>{{transmission.agentCPAM}}</span></td></tr>
+			{#<tr><td><label class="indication">Numero de Semaine dépôt :       </label></td><td><span>{{transmission.numeroSemaine}}</span></td></tr>#}
+			</table>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			</div>
+      </div>
+      
+    </div>
+   </div>
+  </div>
+{% endfor %}
+			</div><div class="da" style="margin-left: 40px"></div>
+
+</div>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+        '@AppBundle/Resources/public/js/dataTables.buttons.min.js'
+        '@AppBundle/Resources/public/js/buttons.html5.min.js'
+		'@AppBundle/Resources/public/js/buttons.colVis.min.js'
+        '@AppBundle/Resources/public/js/jszip.min.js'
+		'@AppBundle/Resources/public/js/moment.min.js'
+		'@AppBundle/Resources/public/js/config_validation.js'
+		'@AppBundle/Resources/public/js/transmission_dossier.js'
+		'@AppBundle/Resources/public/js/jqueryValidate.min.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

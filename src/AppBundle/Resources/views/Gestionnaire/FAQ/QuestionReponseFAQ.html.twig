@@ -1,0 +1,51 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets
+
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="r_cnx_colonneG full">							
+    <h2>FAQ - Rédiger une question/réponse pour la FAQ</h2>
+		{{ form_start(form) }}	
+        <div class="block">
+			{{ form_label(form.theme) }}
+            {{ form_widget(form.theme) }}
+			<br>
+			{{ form_label(form.question_FAQ) }}
+			{{ form_widget(form.question_FAQ) }}	
+			<br>
+			{{ form_label(form.reponse_FAQ) }}
+			{{ form_widget(form.reponse_FAQ) }}
+			<br>
+		</div>	
+		
+		<button type="submit" class="btn btn-primary">Enregistrer dans la FAQ</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<a class=blue href={{ path('FAQGestionnaireGestion') }}>Voir les questions de la FAQ</a>		
+		{{form_end(form)}}
+			{% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+ 		'@AppBundle/Resources/public/js/faq.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

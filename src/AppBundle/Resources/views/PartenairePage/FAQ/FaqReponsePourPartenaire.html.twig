@@ -1,0 +1,48 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets
+			'@AppBundle/Resources/public/css/accordion.css' 
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="r_cnx_colonneG full">							
+    <h2>FAQ - Réponse à vos questions</h2>
+        <div class="block">
+            <br>
+			
+			<div id="accordion">
+			{% for Liste_Question in liste_Reponses_questions %}
+			<h3>Le {{Liste_Question.date_question|date('d/m/Y')}} - {{ Liste_Question.theme }}</b><br>&nbsp;&nbsp; "{{ Liste_Question.question }}"</h3>
+				<div>
+									
+					{% if Liste_Question.reponse !='' %}
+						<h4>
+						Réponse le {{Liste_Question.date_reponse|date('d/m/Y')}}<font color='#226B9B'>: {{ Liste_Question.reponse }}</font></h4>
+					{%  else %}
+						<h4><b>Pas encore de réponse</b></h4>
+					{% endif %}
+					
+				</div>
+			{% endfor %}
+			</div>
+			
+        </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+        '@AppBundle/Resources/public/js/faq.js'
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+        '@AppBundle/Resources/public/js/accordeon.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

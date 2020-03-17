@@ -1,0 +1,75 @@
+<nav>
+
+<a tabindex="-1" class="r_lien_image" href="{{ path('index') }}" title="Accéder à l'accueil" >
+</a>
+
+    <ul id="navigation" class="niveau1 navigation">
+		<li class ="menu toggleSubMenu lienNiveau1">
+			<a href="" title="Gestion des dossiers partenaires" class="hover">Gestion des dossiers partenaires<i class="arrow right"></i></a>
+            <ul class="subMenu">
+                <li class="ssmenu niveau2">
+           		 	<a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'ReceptionDossiers' %}active{% endif %}" href="{{ path('ReceptionDossiers') }}" title="Réception des dossiers" >Réception des dossiers</a>
+				 </li>
+				 <li class="ssmenu niveau2">
+           		 	<a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'ConsultationDossiers' %}active{% endif %}" href="{{ path('ConsultationDossiers') }}" title="Consultation des dossiers">Consultation des dossiers</a>
+				 </li>
+				 {#<li class="ssmenu niveau2">
+           		 	<a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'StatsDossiers' %}active{% endif %}" href="{{ path('StatsDossiers') }}" title="Consultation des dossiers">Stats de Dossiers</a>
+				 </li>#}
+			</ul>
+        </li>
+        {#<li class = "menu niveau1"> 
+            <a href="{{ path('CommGestionSupport') }}" title="Gestion des commandes de supports" class="lienNiveau1  {% if app.request.attributes.get('_route') == 'CommGestionSupport' %}active{% endif %}">Gestion des commandes de supports</a>
+        </li>#}
+        <li class ="menu toggleSubMenu lienNiveau1 ">
+            <a href="" title="Gestion de la newsletter" class="hover">Gestion de la newsletter<i class="arrow right"></i></a>
+            <ul class="subMenu">
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'CreationNewsletters' %}active{% endif %}" href="{{ path('CreationNewsletters') }}" title="Création pour test">Création</a>
+                </li>
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'ListeNewsletter'%}active{% endif %}" href="{{ path('ListeNewsletter') }}" title="Liste des abonnés">Liste des newsletters</a>
+                </li>
+				<li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'EnvoiNewsletter' %}active{% endif %}" href="{{ path('EnvoiNewsletter') }}" title="Envoi aux abonnés">Envoi aux abonnés</a>
+                </li>
+            </ul>
+        </li>
+        {#<li class ="menu toggleSubMenu lienNiveau1">
+            <a href="" title="Gestion de la newsletter" class="hover">Gestion des offres partenaire<i class="arrow right"></i></a>
+            <ul class="subMenu">
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'CreationOffresPartenaire' %}active{% endif %}" href="{{ path('CreationOffresPartenaire') }}" title="Creation d'offres Partenaire" class="lienNiveau1">Creation d'offres partenariat</a>
+                </li>
+                 <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'ListeOffresPartenaire' %}active{% endif %}" href="{{ path('ListeOffresPartenaire') }}" title="Lister les offres Partenaire" class="lienNiveau1">Lister les offres Partenaire</a>
+                </li>
+            </ul>
+        </li>  #}
+		<li class ="menu toggleSubMenu lienNiveau1">
+            <a href="" title="Gestion de la FAQ" class="hover">Gestion de la FAQ<i class="arrow right"></i></a>
+			<ul class="subMenu">
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'FAQConsultQuestion' %}active{% endif %}" href="{{ path('FAQConsultQuestion') }}" title="Répondre aux questions" class="lienNiveau1">Répondre aux questions des partenaires</a>
+                </li>
+                 <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'FAQGestionnaireGestion' %}active{% endif %}" href="{{ path('FAQGestionnaireGestion') }}" title="Gérer la FAQ" class="lienNiveau1">Gérer la FAQ</a>
+                </li>
+            </ul>
+        </li>  
+        <li class ="menu toggleSubMenu lienNiveau1">
+            <a href="" title="Gestion des demandes de compte" class="hover">Gestion des demandes de compte<i class="arrow right"></i></a>
+            <ul class="subMenu">
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'demande_compte_list' %}active{% endif %}" href="{{ path('demande_compte_list') }}" title="Liste des demandes" class="lienNiveau1">Liste des demandes</a>
+                </li>
+                 <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'demande_compte_creer' %}active{% endif %}" href="{{ path('demande_compte_creer') }}" title="Créer une demande" class="lienNiveau1">Créer une demande</a>
+                </li>
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'gestion_structure' %}active{% endif %}" href="{{ path('gestion_structure') }}" title="Gestion des structures" class="lienNiveau1">Gestion des structures</a>
+                </li>
+            </ul>
+        </li> 
+    </ul>     
+</nav>        

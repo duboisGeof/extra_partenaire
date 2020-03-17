@@ -1,0 +1,182 @@
+
+{% block body %}
+
+		<div>
+					<div class="chart-container  col" style='border-right:ridge;'>
+							<canvas id="graph_demande"></canvas>
+					</div>		
+
+					<div class="chart-container col" >
+								<canvas id="graph_delai"></canvas>
+					</div>
+			
+					<div class="chart-container " style='width:35vw;margin-left: 14.5vw;'>
+								<canvas id="graph_synthese"></canvas>
+					</div>
+		</div>			
+		
+		<div class="block">
+		
+			{% for key,demande in type_demande %}
+					<h2 id="H2{{key}}" class="pointer">{{demande}} &#9660;</h2>
+					<div id="list_{{key}}" class="table-responsive">
+					<table id='{{demande}}'class='table table-striped table-bordered'>
+						
+						<thead>
+							<tr>{% if key!=7 %}<th>Delai de traitement<br> moyen de {{demande}}  </th>{% endif %}
+							<th>Nb total</th>
+							<th>% par rapport <br>au total de dossiers  </th>
+							{% if key<3 %}
+							<th>Nb accord</th>
+							<th>% par rapport <br>au total de {{demande}}  </th>
+							<th>Nb refus</th>
+							<th>% par rapport <br>au total de {{demande}}  </th>
+							<th>Nb incomplet</th>
+							<th>% par rapport <br>au total de {{demande}}  </th>
+							{% endif %}</tr>
+						</thead>
+						<tbody>
+							
+							<tr>{% if key!=7 %}<td>{{NbDelai_demande[key].val|round(2,'common')}}</td>{% endif %}
+							<td>{{Nb_demande[key].nb}}</td><td class='taux'>{% if Nb_demande[key].nb!=0%}{{(Nb_demande[key].nb*100/NbTotal)|round(2,'common')}}{% else %}0{% endif %}%</td>
+							
+								{% for j,Nbs_decision in Nb_decision %}
+									{% if key<3 %}
+									<td>{{Nb_decision[key][j].nb}}</td><td class='taux'>
+									{% if Nb_decision[key][j].nb!=0%}{{(Nb_decision[key][j].nb*100/Nb_demande[key].nb)|round(2,'common')}}{% else %}0{% endif %}%
+									{% endif %}</td>
+								{% endfor %}
+							</tr>
+						</tbody>
+					</table>
+					</div>
+{% endfor %}
+				<h2 id="H2_synthe" class="pointer">Synthèse &#9660;</h2>
+					<div id="list_synthe" class="table-responsive">
+						<table  class='table table-striped table-bordered'>
+						<thead>
+							<th>Nb Total des <br>demandes transmises</th>
+							<th>Délai moyen de <br>l'ensemble des demandes</th>
+							<th>Nb Total dossiers <br>(PUMA+CMUC/ACS+AME)<br>hors Mise à jour</th>
+							<th>Part dossiers complets<br> hors Mise à jour</th>
+							<th>Nb dossiers <= 30jours</th>
+							<th>Taux Nbdossiers <=30j</th>
+							<th>Nb délai Négatif</th>
+						</thead>
+							<tbody>
+								<td>{{NbTotal}}</td>
+								<td >{{(NbDelaiMoyenTotal.val)|round(2,'common')}}</td>
+								<td>{{NbhorsMAJ.NbHorsMAJ}}</td>
+								<td class='taux'>{{(PartHorsMAJ*100)|round(2,'common')}}%</td>
+								<td>{{NbDelaiMoinsMois.nb}}</td>
+								<td class='taux'>{{(NbDelaiMoinsMois.nb*100/NbTotalDossiers.nbDossier)|round(2,'common')}}%</td>
+								<td class='negatif'>{{NbDelaiNegatif.NbDelaiNegatif}}</td>
+							</tbody>
+						</table>
+					</div>
+				<h2 id="H2_SPPR" class="pointer">Indicateur SPPR &#9660;</h2>
+				<div id="list_SPPR" class="table-responsive">
+						<table  class='table table-striped table-bordered'>
+							<thead>
+								<th>Indicateurs</th>
+								{% for mois in calendrier%}
+									<th>{{mois}}</th>
+								{% endfor %}
+							</thead>
+							<tbody>
+							{% for key, indicateur in indicateurs%}
+							<tr>
+								<td>{{indicateur}}</td>
+								{% set Nb_Mois=calendrier|length %}
+
+								{% for i in 1..calendrier|length  %}
+									{% if key==0 %}
+										{% if Liste_Somme_delai_Indicateur[key][i].somme_delai!=null%}
+											<td>{{Liste_Somme_delai_Indicateur[key][i].somme_delai}}</td>
+										{% else %}
+										<td>0</td>
+										{% endif %}
+									{% elseif key==1 %}
+											<td>{{Liste_NbDossier_dateIns_Indicateur[key][i].nbDossier_dateInstru}}</td>
+									{% else %}
+											<td>{{Liste_NbDossier_dateRecep_Indicateur[key][i].nbDossier_dateRecept}}</td>
+									{% endif %}
+								{% endfor %}
+							</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+				</div>
+		</div>
+	{#<div class="table-responsive text-nowrap block" style='width: 75vw;'>
+	
+		<table class='table table-striped table-bordered'><thead class='table-primary'>
+		<caption>AZE</caption>
+		{% for i in 0..1 %}
+		<tr>
+		{% for key,demande in type_demande %}
+		
+		{% if i==0 %}
+			{% if key<3 %}
+					{% set col=9 %}
+				{% elseif key==7 %}
+					{% set col=2 %}
+				{% else %}
+					{% set col=3 %}
+			{% endif %}
+		
+			<th colspan='{{col}}' class="text-center">{{demande}}</th>
+		{% else %}
+							{% if key!=7 %}<th>Delai</th>{% endif %}
+							<th>Nb total</th>
+							<th>% par rapport <br>au total de dossiers  </th>
+							{% if key<3 %}
+							<th>Nb accord</th>
+							<th>% par rapport <br>au total de {{demande}}  </th>
+							<th>Nb refus</th>
+							<th>% par rapport <br>au total de {{demande}} </th>
+							<th>Nb incomplet</th>
+							<th>% par rapport <br>au total de {{demande}} </th>
+							{% endif %}
+							
+			
+		{% endif %}
+		
+		{% endfor %}
+		{% if i==1 %}
+				<th>Nb Total dossiers</th>
+				<th>Délai moyen de l'ensemble</th>
+				<th>Nb Total dossiers hors Mise à jour</th>
+				<th>Part dossiers complet hors Mise à jour</th>
+				<th>Nb dossiers <= 30jours</th>
+				<th>Taux Nbdossiers <=30j</th>
+				<th>Nb délai Négatif</th>
+		{% endif %}</tr>
+		{% endfor %}</thead>
+		<tbody>
+			<tr>
+					{% for key,demande in type_demande %}
+						{% if key!=7 %}<td>{{NbDelai_demande[key].val|round(0,'common')}}</td>{% endif %}
+										<td>{{Nb_demande[key].nb}}</td><td>{% if Nb_demande[key].nb!=0%}{{(Nb_demande[key].nb*100/NbTotal.nbDossier)|round(2,'common')}}%{% else %}0%{% endif %}</td>
+
+											{% for j,Nbs_decision in Nb_decision %}
+												{% if key<3 %}
+												<td>{{Nb_decision[key][j].nb}}</td><td>
+												{% if Nb_decision[key][j].nb!=0%}{{(Nb_decision[key][j].nb*100/Nb_demande[key].nb)|round(2,'common')}}%{% else %}0%{% endif %}
+												{% endif %}</td>
+											{% endfor %}
+					{% endfor %}
+					<td>{{NbTotal.nbDossier}}</td>
+					<td>{{(NbDelaiMoyenTotal.val)|round(2,'common')}}</td>
+					<td>{{NbhorsMAJ.NbHorsMAJ}}</td>
+					<td>{{(PartHorsMAJ.part*100/NbhorsMAJ.NbHorsMAJ)|round(2,'common')}}%</td>
+					<td>{{NbDelaiMoinsMois.nb}}</td>
+					<td>{{(NbDelaiMoinsMois.nb*100/NbTotal.nbDossier)|round(2,'common')}}%</td>
+					<td>{{NbDelaiNegatif.NbDelaiNegatif}}</td>
+			</tr>
+		</tbody>
+
+		</table>	
+	</div>#}
+
+{% endblock %}

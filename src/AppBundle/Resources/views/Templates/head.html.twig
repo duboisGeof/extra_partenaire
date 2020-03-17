@@ -1,0 +1,25 @@
+{% block head %}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'@AppBundle/Resources/public/css/bootstrap.min.css'
+			'@AppBundle/Resources/public/css/bouton.css' 
+			'@AppBundle/Resources/public/css/custom.css' 
+			'@AppBundle/Resources/public/css/forms.css' 
+			'@AppBundle/Resources/public/css/general.css'
+			'@AppBundle/Resources/public/css/jquery-ui.min.css'  
+			'@AppBundle/Resources/public/css/nav.css' 
+			'@AppBundle/Resources/public/css/style.css' 
+			'@AppBundle/Resources/public/css/theme-jquery-ui-min.css' 
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+<title>
+	
+	{% if block('title') is not empty %}
+	- {% block title %}{% endblock title %}
+	{% endif %}
+</title>
+
+

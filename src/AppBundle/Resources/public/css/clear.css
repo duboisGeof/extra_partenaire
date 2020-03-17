@@ -1,0 +1,19 @@
+/**
+* Contient les css utilisés pour les blocs
+* MAJ par Sylvie le 16 juillet 2018
+* Fichier propre
+**/
+
+
+.block {
+	display: block;
+	margin-bottom: 1.5em;
+}
+
+/* Bloc utilisé pour les offres de services partenariat */
+.blockAscenseur {
+	display: block;
+	margin-bottom: 1.5em;
+	overflow:auto;
+	height:400px;
+}

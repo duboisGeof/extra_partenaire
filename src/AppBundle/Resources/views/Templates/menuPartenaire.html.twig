@@ -1,0 +1,100 @@
+{% block menu %}
+<nav>
+
+   <a tabindex="-1" class="r_lien_image" href="{{ path('index') }}" title="Accéder à l'accueil" >
+</a>
+
+   <ul id="navigation" class="niveau1 navigation">
+	  <li class = "menu niveau1"> 
+            <a href="{{ path('infoCompte') }}" title="Votre compte" class="lienNiveau1  {% if app.request.attributes.get('_route') == 'infoCompte' %}active{% endif %}">Votre compte</a>
+	  </li>
+      {#<li class = "menu toggleSubMenu lienNiveau1">
+         <a href="#" title="Vos services" class="hover">Vos offres de services<i class="arrow right"></i></a>
+         <ul class="subMenu">
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'offrePartenaireEnCours' %}active{% endif %}" href="{{ path('offrePartenaireEnCours') }}" title="Vos offres en cours" >Vos offres en cours</a>
+            </li>
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'offrePartenaire' %}active{% endif %}" href="{{ path('offrePartenaire') }}" title="Ajouter une offre" >Ajouter une offre</a>
+            </li>
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'OffrePartenaireSuppr' %}active{% endif %}" href="{{ path('OffrePartenaireSuppr') }}" title="Supprimer une offre" >Supprimer une offre</a>
+            </li>
+         </ul>
+      </li>#}
+      <li class = "menu toggleSubMenu lienNiveau1">
+         <a href="#" title="Vos dossiers " class="hover">Vos dossiers<i class="arrow right"></i></a>
+         <ul class="subMenu">
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'PartenaireSupport' %}active{% endif %}" href="{{ path('PartenaireSupport') }}" title="Transmission des dossiers" >Transmission des dossiers</a>
+            </li>
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'PartenaireRecapitulatif' %}active{% endif %}" href="{{ path('PartenaireRecapitulatif') }}" title="Les récapitulatifs">Consulter le récapitulatif</a>
+            </li>
+            {#<li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'PartenaireStatistiques' %}active{% endif %}" href="{{ path('PartenaireStatistiques') }}" title="Les statistiques">Statistiques</a>
+            </li>#}
+         </ul>
+      </li>
+      {#<li class ="menu toggleSubMenu lienNiveau1">
+         <a href="#" title="Vos commandes" class="hover">Vos commandes<i class="arrow right"></i></a>
+         <ul class="subMenu">
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'commande' %}active{% endif %}" href="{{ path('commande') }}" title="Supports de communications">Supports de communications</a>
+            </li>
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'commande' %}active{% endif %}" href="{{ path('commande') }}" title="Imprimés">Imprimés</a>
+            </li>
+         </ul>
+      </li>#}
+{#      <li class ="menu">
+         <a href="{{ path('PartenaireHistoAtelier') }}" title="Vos ateliers" class="lienNiveau1">Vos ateliers</a>
+      </li>#}
+      <li class ="menu">
+         <a href="{{ path('contactService') }}" title="Vos Contacts" class="lienNiveau1">Vos contacts CPAM</a>
+      </li>
+      <li class ="menu toggleSubMenu lienNiveau1">
+         <a href="#" title="FAQ" class="hover">Questions à la CPAM<i class="arrow right"></i></a>
+         <ul class="subMenu">
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'RedigerQuestion' %}active{% endif %}" href="{{ path('RedigerQuestion',{id:0}) }}" title="Rédiger une question">Rédiger une question</a>
+            </li>
+            <li class="ssmenu niveau2">
+
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'FAQReponseVosQuestions' %}active{% endif %}" href="{{ path('FAQReponseVosQuestions') }}" title="Réponse à vos questions">Consulter les réponses</a>
+            </li>
+         </ul>
+      </li>
+	   {#<li class = "menu niveau1"> 
+            <a href="{{ path('PartenaireNewsletter') }}" title="Abonnement Newsletter" class="lienNiveau1  {% if app.request.attributes.get('_route') == 'PartenaireNewsletter' %}active{% endif %}">Abonnement Newsletter</a>
+	  </li>#}
+      {#<li class ="menu toggleSubMenu lienNiveau1">
+         <a href="#" title="Partenariat" class="hover">Partenariat<i class="arrow right"></i></a>
+         <ul class="subMenu">
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'info_partenariat' %}active{% endif %}" href="{{ path('info_partenariat') }}" title="Mon Partenariat">Mon Partenariat</a>
+            </li>
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'presentation_partenariat' %}active{% endif %}" href="{{ path('presentation_partenariat') }}" title="Présentation">Présentation</a>
+            </li>
+            <li class="ssmenu niveau2">
+               <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'PartenaireAbonnementNewsletter' %}active{% endif %}" href="{{ path('demande_partenariat') }}" title="Demande">Demande</a>
+            </li>
+         </ul>
+      </li>#}
+      {#
+      <form class="new" action = "#" method="POST" enctype ="multipart/form-data">
+         <fieldset>
+            <legend><strong><em>NEWSLETTER</em></strong></legend>
+            <input  type ="nom" name ="nom" size="17" maxlength="30" placeholder= "Nom prenom" id="nom" required=true></br> </br>
+            <input  type ="email" name ="email" size="17" maxlength="30" placeholder="Adresse email" required=true  id="email" ></br></br>
+         </fieldset>
+         </br>
+         <button type="submit" value="Inscription">Inscription</button>
+         <button type="reset" value="Annuler">Annuler</button>
+      </form>
+      #}
+   </ul>
+</nav>
+{% endblock %}
+

@@ -1,0 +1,116 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets
+			'@AppBundle/Resources/public/css/flexslider.css'
+			'@AppBundle/Resources/public/css/carrousel.css' 
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="col-md-10">
+<br>
+	<h2>Actualités</h2>
+	<div class="flexslider">
+  		<ul class="slides">
+			{% for actualite in listeActualite %}
+				<li>
+					
+	    				<img src="{{ actualite.url_img }}" alt="Example" class="photoSlider" alt="Logo du régime d'assurance maladie" height="500" width='200' href="{{ path('inscription') }}" />
+					
+					<p class="date black">
+						{{actualite.date_create}}
+						<a class="bleu" href="{{ path('actualite') }}">Rubriques</a>
+					</p>
+					<p class="text_slider black">
+						<b>{{actualite.title}}</b><br>
+						{% autoescape false %}
+	                        {{actualite.content[:50] ~ '...'}}
+                     	{% endautoescape %}
+						<br><br>
+						<div class='green'><div class='droite'><a href=''>Lire la suite</a></div></div>
+					</p>
+				</li>
+			{% endfor %}
+			{#<li>
+				{% image '@AppBundle/Resources/public/img/test.png' %}
+    				<img src="{{ asset_url }}" alt="Example" class="photoSlider" alt="Logo du régime d'assurance maladie" height="500" width='200' href="{{ path('inscription') }}" />
+				{% endimage %}
+				<p class="date black">
+					01/02/2018
+					<a class="bleu" href="{{ path('actualite') }}">Rubriques</a>
+				</p>
+				<p class="text_slider black">
+					<b>Actualité 1</b><br>
+					Nunc vero inanes flatus quorundam vile esse quicquid extra urbis pomerium nascitur aestimant praeter orbos et caelibes, nec credi potest qua diversitate coluntur sine liberis Romae.
+					<br><br>
+					<div class='green'><div class='droite'><a href=''>Lire la suite</a></div></div>
+				</p>
+			</li>
+			<li>
+				{% image '@AppBundle/Resources/public/img/test.png' %}
+    				<img src="{{ asset_url }}" height="500" width='200'  alt="Example" class="photoSlider" alt="Logo du régime d'assurance maladie" 			 					href="{{ path('inscription') }}" />
+				{% endimage %}
+				<p class="date black">
+					03/05/2018
+					<a class="bleu" href="{{ path('actualite') }}">Rubriques</a>
+				</p>
+				<p class="text_slider black">
+					<b>Actualité 2</b><br>
+					Nunc vero inanes flatus quorundam vile esse quicquid extra urbis pomerium nascitur aestimant praeter orbos et caelibes, nec credi potest qua diversitate coluntur sine liberis Romae.
+					<br><br>
+					<div class='green'><div class='droite'><a href=''>Lire la suite</a></div></div>
+				</p>
+			</li>
+			<li>
+				{% image '@AppBundle/Resources/public/img/test.png' %}
+    				<img src="{{ asset_url }}" alt="Example" class="photoSlider" alt="Logo du régime d'assurance maladie" 			 					href="{{ path('inscription') }}" />
+				{% endimage %}
+				<p class="date black">
+					04/06/2018
+					<a class="bleu" href="{{ path('actualite') }}">Rubriques</a>
+				</p>
+				<p class="text_slider black">
+					<b>Actualité 3</b><br>
+					Nunc vero inanes flatus quorundam vile esse quicquid extra urbis pomerium nascitur aestimant praeter orbos et caelibes, nec credi potest qua diversitate coluntur sine liberis Romae.
+					<br><br>
+					<div class='green'><div class='droite'><a href=''>Lire la suite</a></div></div>
+				</p>
+			</li>
+			<li>
+				{% image '@AppBundle/Resources/public/img/test.png' %}
+    				<img src="{{ asset_url }}" alt="Example" class="photoSlider" alt="Logo du régime d'assurance maladie" 			 					href="{{ path('inscription') }}" />
+				{% endimage %}
+				<p class="date black">
+					01/07/2018
+					<a class="bleu" href="{{ path('actualite') }}">Rubriques</a>
+				</p>
+				<p class="text_slider black">
+					<b>Actualité 4</b><br>
+					Nunc vero inanes flatus quorundam vile esse quicquid extra urbis pomerium nascitur aestimant praeter orbos et caelibes, nec credi potest qua diversitate coluntur sine liberis Romae.
+					<br><br>
+					<div class='green'><div class='droite'><a href=''>Lire la suite</a></div></div>
+				</p>
+			</li>#}
+	  </ul>
+	</div>
+	<div class='droite'><a href='{{ path('Historique_actualites') }}'>+ Voir toutes les actualités'</a>
+		</div>
+</div>
+{% endblock %}
+
+ 
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+    	'@AppBundle/Resources/public/js/jquery.flexslider.min.js'
+        '@AppBundle/Resources/public/js/carrousel.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

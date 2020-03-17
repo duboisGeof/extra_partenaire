@@ -1,0 +1,248 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% form_theme form2 'bootstrap_3_layout.html.twig' %}
+
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets	filter='cssrewrite'
+
+			'@AppBundle/Resources/public/css/datatableBoostrap.css'
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 
+			'@AppBundle/Resources/public/css/datepicker.css' 
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="r_cnx_colonneG full">							
+	<h2> SUPPORT DE TRANSMISSION PARTENAIRE / CPAM : {{partenaire}}</h2>
+{#		<div class="block">
+
+				<table>
+				<tr><td>Désignation du partenaire :</td><td>{{partenaire.nomStructure}}</td></tr>
+				<tr><td>Nom et prénom de l'interlocuteur :</td><td>{{partenaire.nom}}  {{partenaire.prenom}}</td></tr>
+				<tr><td>N° de téléphone :</td><td>{{partenaire.tel}}</td></tr>
+				<tr><td>Adresse mail pour restitution de décision :</td><td>{{partenaire.mail}}</td></tr>
+				</table>
+
+			
+			</div>#}
+			
+			<div class="block">
+			{#<h3 class="modif-h3">Vos dossiers en cours</h3>#}
+
+		
+				<table id="tablepanier" class="table table-striped table-bordered" >
+				
+				<thead>
+					<tr> 
+						<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+						<th scope="col"><b>Nom</th>
+						<th scope="col"><b>Prénom</th>
+						<th scope="col"><b>Nature Demande</th>
+						<th scope="col"><b>Naissance</th>
+						<th scope="col"><b>Observations</th>
+						<th scope="col"><b>Téléphone</th>
+						<th scope="col"><b>Nom Agent</th>
+						<th scope="col"><b>PJ</th>
+						{#<th scope="col">Semaine de dépôt</th>	#}
+					</tr>
+				</thead>
+				<tbody >{% for transmission in transmissions %}
+				
+					<tr>
+						<td><a class="btn btn-success btn-circle id{{transmission.id}}" data-toggle="modal" data-target="#ModifModalDossier" title="Modifier"><span style='font-family:Wingdings'>!</span></a>
+						<a class="btn btn-danger btn-circle supprDossier id{{transmission.id}}" data-toggle="modal" data-target="#ModalSuppr" role="danger" title="Supprimer"><span style='font-size:16.0pt;font-family:Wingdings'>û</span></a>
+						<p> <a href="#">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+      </p>
+						
+						</td>
+						<td>{{transmission.nom_patro}}</td>
+						<td>{{transmission.prenom}}</td>
+						<td>{{transmission.demande}}</td>
+						<td>{{transmission.naissance|date("d/m/Y") }}</td>
+						<td>{{transmission.observation}}</td>
+						<td>{{transmission.tel}}</td>
+						<td>{{transmission.agent}}</td>
+						<td>
+						{% if transmission.pj != null %}<a href="..\..\files\Dossiers\{{transmission.pj}}" target=_blank onclick="window.open(this.href);return false"><span style='font-family:Wingdings'>4</span></a>{% endif %}
+						</td>
+						{#<td>{{transmission.numeroSemaine}}</td>#}
+
+				
+					</tr>{% endfor %}
+				</tbody>
+				</table>
+			<button type="button" class="btn btn-primary btn-sm ajouter_dossier" data-toggle="modal" data-target="#ModalDossier">Ajouter un dossier
+			</button>
+				</div>
+															<!-- Modal -->
+  <div class="modal fade ModalDossier" id="ModalDossier" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h2 class="modal-title w-100 font-weight-bold">Nouveau dossier</h2>
+        </div>
+        <div class="modal-body">
+			{{ form_start(form, {'attr': {'id': 'formModalDossier'} }) }}
+			{{ form_errors(form)}}
+			<table>
+				<tr><td colspan=4 class="table-color-red" >(Reprendre l'orthographe indiquée sur un document officiel : extrait d'acte de naissance, pièce d'identité, ...)<br><br></td>
+				</tr>
+				<tr>
+					<td class="table-color-red">Nom patronymique:*</td><td>{{ form_widget(form.Nom_patronymique) }}</td>
+					<td class="table-color-red">&nbsp;&nbsp;Nom marital:</td><td>{{ form_widget(form.Nom_marital) }}</td>
+				</tr>
+				<tr>
+					<td class="table-color-red">Prénom:*</td>
+					<td>{{ form_widget(form.Prenom) }}</td><td>&nbsp;&nbsp;Date naissance (jj/mm/aaaa):*</td><td>{{ form_widget(form.Naissance) }}</td>
+				</tr>
+				<tr>
+					<td>Tél. (max 14 caracts.):</td><td>{{ form_widget(form.Telephone) }}</td>
+					<td>&nbsp;&nbsp;N° de dossier:</td><td>{{ form_widget(form.Numero_dossier) }}</td>
+				</tr>
+				<tr>			
+					<td>Nom agent instructeur:</td>
+					<td>{{form_widget(form.Nom_agent)}}</td>
+					<td>&nbsp;&nbsp;Dossier urgent:</td>
+					<td>{{form_widget(form.Urgence)}}</td>
+					{#<td>&nbsp;&nbsp;Semaine de dépôt:*</td>
+					<td>{{ form_widget(form.Semaine) }}<font class="datepicker2" size="5px" color="#1E638F"> &#x1f4c5;</font></td>#}
+				</tr>
+				<tr>
+					<td>Nature de la demande:*</td>
+					<td colspan=3>{{ form_widget(form.Nature_demande) }}</td>
+				</tr>
+				<tr>
+					<td>Observations:</td>
+					<td colspan=3>{{form_widget(form.Observations)}}</td>
+				</tr>
+				<tr>
+					<td>Pièce à joindre:</td>
+					<td colspan=3>{{form_widget(form.PJ)}}</td>
+				</tr>				
+				<tr><td class="italic">(*) champ obligatoire</td></tr>
+				</table>
+			<div class="modal-footer">
+			
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			  <button id="Btn_ajout_dossier" type="submit" class="btn btn-primary">Enregistrer</button>
+			</div>
+			{{ form_end(form) }}
+      </div>
+      
+    </div>
+ </div>
+ </div>
+ 									<!-- Modal Modif -->
+  <div class="modal fade ModalDossier" id="ModifModalDossier" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h2 class="modal-title w-100 font-weight-bold">Modifier un dossier</h2>
+        </div>
+        <div class="modal-body">
+			{{ form_start(form2, {'attr': {'id': 'form_modifModalDossier'} }) }}
+			{{ form_errors(form2)}}
+			<table>
+				<tr><td colspan=4 class="table-color-red" >(Reprendre l'orthographe indiquée sur un document officiel : extrait d'acte de naissance, pièce d'identité, ...)<br><br></td>
+				</tr>
+				<tr>
+
+			</tr>
+				<tr>
+					<td class="table-color-red">Nom patronymique:*</td><td>{{ form_widget(form2.modif_Nom_patronymique) }}</td>
+					<td class="table-color-red">&nbsp;&nbsp;Nom marital:</td><td>{{ form_widget(form2.modif_Nom_marital) }}</td>
+				</tr>
+				<tr>
+					<td class="table-color-red">Prénom:*</td>
+					<td>{{ form_widget(form2.modif_Prenom) }}</td><td>&nbsp;&nbsp;Date naissance (jj/mm/aaaa):*</td><td>{{ form_widget(form2.modif_Naissance) }}</td>
+				</tr>
+				</tr>
+				<tr>
+					<td>Tél. (max 14 caract.):</td><td>{{ form_widget(form2.modif_Telephone) }}</td>
+					<td>&nbsp;&nbsp;N° dossier:</td><td>{{ form_widget(form2.modif_Numero_dossier) }}</td>
+				</tr>
+				<tr>			
+					<td>Nom agent instructeur:</td>
+					<td>{{form_widget(form2.modif_Nom_agent)}}</td>
+					<td>&nbsp;&nbsp;Dossier urgent:</td>
+					<td>{{form_widget(form2.modif_Urgence)}}</td>					
+					{#<td>&nbsp;&nbsp;Semaine de dépôt:*</td>
+					<td>{{ form_widget(form2.modif_Semaine) }}<font class="datepickerModif" size="5px" color="#1E638F"> &#x1f4c5;</font></td>#}
+				</tr>
+				<tr>
+					<td>Nature de la demande:*</td>
+					<td colspan=3>{{ form_widget(form2.modif_Nature_demande) }}</td>
+				</tr>
+				<tr>
+					<td>Observations:</td>
+					<td colspan=3>{{form_widget(form2.modif_Observations)}}</td>
+				</tr>
+				<tr>
+					<td>Pièce à joindre:</td>
+					<td colspan=3>{{form_widget(form2.modif_PJ)}}</td>
+				</tr>				
+				<tr><td class="italic">(*) champ obligatoire</td></tr>
+				</table>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			  <button type="submit" class="btn btn-primary" id="Btn_modif_dossier">Enregistrer</button>
+			</div>
+      </div>
+    </div>
+ </div>
+</div>{{ form_end(form2) }}
+		{% for transmission in transmissions %}
+
+        <div class="modal hide fade" id="ModalSuppr">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>&#9888;&nbsp;&nbsp;Confirmer le refus</h3>
+                <a data-dismiss="modal" aria-hidden="true" id="ModalSupprClose">&times;</a>
+            </div>
+            <div class="modal-body">
+                <p>Etes-vous sûr(e) de vouloir supprimer ce dossier?</p>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="AnnulerSuppr">Annuler</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="SupprimerDossierConf">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+		{% endfor %}
+</div>
+{% endblock %}
+
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+		 
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+		'@AppBundle/Resources/public/js/dataTables.buttons.min.js'
+        '@AppBundle/Resources/public/js/datepicker.min.js'
+        '@AppBundle/Resources/public/js/datepicker.js'
+		'@AppBundle/Resources/public/js/moment.min.js'
+        '@AppBundle/Resources/public/js/jszip.min.js'
+		'@AppBundle/Resources/public/js/config_validation.js'
+		'@AppBundle/Resources/public/js/transmission_dossier.js'
+		'@AppBundle/Resources/public/js/jqueryValidate.min.js'
+    %}
+	
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

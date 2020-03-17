@@ -1,0 +1,54 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'@AppBundle/Resources/public/css/datatableBoostrap.css' 
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 
+			'@AppBundle/Resources/public/css/datepicker.css' 
+			'@AppBundle/Resources/public/css/bouton.css' 			
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+{% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+<div class="r_cnx_colonneD">
+	<h2>J'acc&egrave;de &agrave; mon compte</h2>
+	<div class="r_cnx_colonneG full">
+		<form name="connexionCompteForm" id="connexioncompte_2connexionCompteForm" method="post" action="{{ path("fos_user_security_check") }}" >
+			<div class="block">
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+				<input id="connexioncompte_2nir_as" type="text" value="" placeholder="Mon Mail" title="Mon Mail" class="form-control" tabindex="3" name="_username" />
+				<br>
+				<input id="connexioncompte_2connexion_code" placeholder="Mon code" tabindex="5"  name="_password" type="password" class="form-control" title="Mon code" value="">
+				<div class='green'>
+					<a id="id_lien_probleme_connexion " tabindex="9" href="{{ path('forgotmdp') }}" title="Code perdu, non-re&ccedil;u ou compte verrouill&eacute;" onclick="">code oublié ?</a>
+				</div>
+				<div class="row justify-content-center">
+					<button type="submit" class="btn btn-success">Valider</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+        '@AppBundle/Resources/public/js/buttons.html5.min.js'
+        '@AppBundle/Resources/public/js/datepicker.min.js'
+		'@AppBundle/Resources/public/js/buttons.colVis.min.js'
+        '@AppBundle/Resources/public/js/datepicker.js'
+        '@AppBundle/Resources/public/js/jszip.min.js'
+        '@AppBundle/Resources/public/js/app.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% block subject %}Ré-initialisation de votre mot de passe{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{#Bonjour {{ user.nomResponsable }} !#}
+Bonjour,
+
+Vous pouvez ré-initialiser votre mot de passe en accédant au lien ci-dessous :
+{{ confirmationUrl }}
+
+Cordialement,
+La CPAM de Seine saint-Denis
+{% endautoescape %}
+{% endblock %}

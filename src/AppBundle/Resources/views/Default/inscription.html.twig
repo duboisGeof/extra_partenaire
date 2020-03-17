@@ -1,0 +1,96 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'@AppBundle/Resources/public/css/datatableBoostrap.css' 
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 
+			'@AppBundle/Resources/public/css/datepicker.css' 
+			'@AppBundle/Resources/public/css/bouton.css' 			
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+{% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+<div class="col-md-10 mt40">
+	<h2>Demande de Compte d'Accès Partenaire</h2>
+	<div class="" id="toggle_demande">
+		<div  id="form_demande" name="form_demande">
+			<style>
+			input[type="text"] {
+			   width: 100%;
+			   height: auto;
+			}
+
+			select {
+			    height:auto !important;
+			width:100% !important;
+			 }
+
+			.clear {
+			clear:both;
+			}
+			</style>
+
+			<div>
+				<div class="block">
+
+				    {{ form_start(form) }}
+					<div class="form-row">
+					    <div class="col">
+						{{ form_row(form.nom) }}
+						{{ form_row(form.prenom) }}
+						{{ form_row(form.tel) }}
+						{{ form_row(form.mail) }}
+						{{ form_row(form.nomResponsable) }}
+						{{ form_row(form.prenomResponsable) }}
+						{{ form_row(form.telResponsable) }}
+						{{ form_row(form.mailResponsable) }}
+					    </div>
+					
+					    <div class="col">
+						{{ form_row(form.nomStructure) }}
+						{{ form_row(form.adresseStructure) }}
+						{{ form_row(form.cpStructure) }}
+						{{ form_row(form.communeStructure) }}
+						{{ form_row(form.mailDiffusion) }}
+						{{ form_row(form.type) }}
+						{#{{ form_row(form.newsletter) }}#}
+						<p>* Les responsables seront informés par mail de leurs propre mot de passe.<br></p>
+					    </div>
+
+					</div>
+			
+			<center><button type="submit" class="btn btn-primary">Envoyer</button></center>
+			<div class="clear"></div>
+				    {{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+{% block connect %}
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+        '@AppBundle/Resources/public/js/buttons.html5.min.js'
+        '@AppBundle/Resources/public/js/datepicker.min.js'
+		'@AppBundle/Resources/public/js/buttons.colVis.min.js'
+        '@AppBundle/Resources/public/js/datepicker.js'
+        '@AppBundle/Resources/public/js/jszip.min.js'
+        '@AppBundle/Resources/public/js/app.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

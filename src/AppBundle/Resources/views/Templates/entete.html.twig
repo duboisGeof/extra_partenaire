@@ -1,0 +1,46 @@
+      {% image '@AppBundle/Resources/public/img/logo_petale.png' %}
+        <img src="{{ asset_url }}" alt="Example" class="align-middle logo" alt="" href="" />
+      {% endimage %}
+      <a class="titre" href="{{ path('index') }}">AGIR ENSEMBLE, PROTEGER CHACUN</a>
+        <ul class="list-group list-group-horizontal">
+         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+       
+            {% image '@AppBundle/Resources/public/img/offBlanc.png' %}
+               <li class="list-group-item">
+                  <a href="{{ path('user_logout') }}">
+                        <img src="{{ asset_url }}" alt="Deconnexion" class="bandeau-lienNiveau1 deconnexion"  />
+                  </a>
+               </li>
+           
+            {% endimage %}
+         {% else %}
+           <div class="dropdown float-right mt05"> 
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon compte partenaire</a>
+        <div class="dropdown-menu"> 
+          <a class="dropdown-item" href="{{ path('connection') }}">Connexion</a> 
+          <a class="dropdown-item" href="{{ path('inscription') }}">Créer un compte</a> 
+        </div> 
+      </div>
+         {% endif %}
+         {% if is_granted('ROLE_PARTENAIRE') %}
+           
+              <li class="list-group-item">
+                <a class="" href="{{ path('espacePartenaire') }}">Espace Partenaire</a>
+              </li>
+            
+         {% endif %}
+         {% if is_granted('ROLE_GESTIONNAIRE') %}
+           
+              <li class="list-group-item">
+                <a class="" href="{{ path('espaceGestionnaire') }}">Espace Gestionnaire</a>
+              </li>
+           
+         {% endif %}
+          </ul> 
+   <a tabindex="-1" class="" href="{{ path('index') }}" title="Accéder à l'accueil" >
+
+   {% image '@AppBundle/Resources/public/img/hand.png' %}
+   <img src="{{ asset_url }}" alt="Example" class="hand" alt="Logo du régime d'assurance maladie" href="{{ path('inscription') }}" />
+
+   {% endimage %}
+   </a>

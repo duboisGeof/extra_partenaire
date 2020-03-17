@@ -1,0 +1,47 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets
+			'@AppBundle/Resources/public/css/accordion.css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="r_cnx_colonneG full">
+	<h2>La réglementation - Aide médicale d'état</h2>
+	<div class="block">
+		<p>
+			Dum apud Persas, ut supra narravimus, perfidia regis motus agitat insperatos, et in eois tractibus bella rediviva consurgunt, anno sexto decimo et eo diutius post Nepotiani exitium, saeviens per urbem aeternam urebat cuncta Bellona, ex primordiis minimis ad clades excita luctuosas, quas obliterasset utinam iuge silentium! ne forte paria quandoque temptentur, plus exemplis generalibus nocitura quam delictis.
+		</p>
+		<p class='green'>
+			Si vous souhaitez en savoir plus sur les informations à destination des partenaires, consultez <a href="{{ path('infosPartenaire')}}">les informations à destination des partenaires</a>
+		</p>
+	</div>
+	<div class="r_cnx_colonneGCE full">
+		<h2>FAQ - Aide médicale d'état</h2>
+
+		<div id="accordion">
+			{% for liste in Liste_FAQ %}
+			<h3>{{ liste.question_reformule }}</h3>
+				<div>
+					<h4>{{ liste.reponse_reformule }}<h4>
+				</div>
+			{% endfor %}
+		</div>
+	</div>			
+</div>
+
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+		'@AppBundle/Resources/public/js/accordeon.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

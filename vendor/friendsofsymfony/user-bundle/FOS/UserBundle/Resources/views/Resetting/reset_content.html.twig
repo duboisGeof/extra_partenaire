@@ -1,0 +1,11 @@
+<div id="r_insc_blue" class="r_cnx_colonneG">
+<h2>Réinitialisez votre mot de passe</h2>
+<div class="r_cnx_cadre_gris">
+<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+    {{ form_widget(form) }}
+    <div class="row justify-content-center">
+        <input type="submit" class="btn btn-primary" value="{{ 'Réinitialiser'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+</form>
+</div>
+</div>

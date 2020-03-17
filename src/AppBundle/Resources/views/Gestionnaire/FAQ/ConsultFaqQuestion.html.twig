@@ -1,0 +1,54 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'@AppBundle/Resources/public/css/datatableBoostrap.css' 
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 	
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="r_cnx_colonneG full">							
+    <h2>FAQ - Questions partenaires</h2>
+        <div class="block">
+            <br>
+			<table class='FAQ_Questions_sans_reponse table-striped table-hover'>
+            <thead>
+                <tr >
+					<th></th>
+                    <th>Partenaire</th>
+                    <th>Question</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+			<tbody>
+				{% for Liste_Question in Liste_Question_Sans_Reponse %}
+				<tr>
+					<td>
+						<a href={{ path('FAQReponseQuestion', {'qid': Liste_Question.qid }) }}><font color=#226B9B>&#128269;</a> {#//A revoir pour mettre dans css#}
+						
+					</td>
+					<td>{{Liste_Question.nomStructure}}</td>
+					<td>{{Liste_Question.question}}</td>
+					<td>{{Liste_Question.date_question|date("d/m/Y")}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+        </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+        '@AppBundle/Resources/public/js/faq.js'
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

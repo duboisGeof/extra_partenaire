@@ -1,0 +1,264 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'@AppBundle/Resources/public/css/table.css' 
+			'@AppBundle/Resources/public/css/datatableBoostrap.css' 
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/bouton.css' 	
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+{% for flashMessage in app.session.flashbag.get('info') %}
+	<div class="alert alert-primary" role="alert">
+	    {{ flashMessage }}
+	</div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('error') %}
+	<div class="alert alert-danger" role="alert">
+	    {{ flashMessage }}
+	</div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('success') %}
+	<div class="alert alert-success" role="alert">
+	    {{ flashMessage }}
+	</div>
+{% endfor %}
+<div class="row">
+<div class="col-md-11 mt40">
+	<h2 id="DemandeAtt" class="pointer styleList" >Demandes en attente &#9660;</h2>
+	<div id="listDemandeAtt" class="" >
+	    <table id="demandesAttente" class="table-striped" style="width:100%">
+		<thead>
+		    <tr>
+			    <th><center>Détail</center></th>
+				<th>Nom structure</th>
+				<th>Nom demandeur</th>
+				<th>Type de Structure</th>
+				<th><center>Actions</center></th>
+		    </tr>
+		</thead>
+		<tbody>
+		    {% for demande in demandesAttente %}
+			<tr>
+			    <td>
+					<a class="detailDemandeId id{{demande.id}}" href="{{ path('showCompteAttenteModalAjax', {'id':demande.id}) }}" data-toggle="modal" data-target="#myModal" role="button">
+						<font color=#226B9B><center>&#128269;</center>
+					</a>
+				</td>
+
+			    <td> {{ demande.nomStructure }} </td>
+			    <td> {{ demande.nom }} {{ demande.prenom }}</td>
+
+			    {% for type in typesStructure %}
+			    	{% if demande.type_id == type.id %}
+			    		<td> {{ type.name }} </td>
+			    	{% endif %}
+		    	{% endfor %}
+			    <td class="actions"> 
+			    <center>
+				<a class="btn btn-sm btn-success white_text valideCompteLink" href="{{ path("demande_compte_validate", { id: demande.id }) }}">Valider</a>
+				<a class="btn btn-sm btn-danger white_text refuseCompteLink" href="{{ path("demande_compte_refuse", { id: demande.id }) }}">Refuser</a>
+				</center>
+			    </td>
+			</tr>
+		    {% endfor %}
+		</tbody>
+	    </table>	    
+	</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-11 mt40">
+	<h2 id="DemandePart" class="pointer styleList" >Comptes Partenaire &#9660;</h2>
+	<div id="listDemandePart" class="">
+	    <table id="demandesPart" class="table-striped" style="width:100%">
+		<br />
+		<thead>
+		    <tr>
+			    <th><center>Détail</center></th>
+				<th>Nom structure</th>
+				<th>Nom demandeur</th>
+				<th>Type de compte</th>
+				<th><center>Actions</center></th>
+		    </tr>
+		</thead>
+		<tbody>
+		    {% for demande in demandesPart %}
+			<tr>
+				<td>
+					<a class="detailCompteId id{{demande.id}}" href="{{ path('showComptePartenaireModalAjax', {'id':demande.id}) }}" data-toggle="modal" data-target="#myModal" role="button">
+						<font color=#226B9B><center>&#128269;</center>
+					</a>
+				</td>
+
+			    {% for structure in structures %}
+			    	{% if demande.structure_id == structure.id %}
+			    		<td> {{ structure.nom }} </td>
+			    	{% endif %}
+		    	{% endfor %}
+			    {% for contact in contacts %}
+			    	{% if demande.contact_id == contact.id %}
+			    		<td> {{ contact.nom }} {{ contact.prenom }}  </td>
+			    	{% endif %}
+		    	{% endfor %}
+
+			    {% for type in types %}
+			    	{% if demande.type_id == type.id %}
+			    		<td> {{ type.name }} </td>
+			    	{% endif %}
+		    	{% endfor %}
+			    <td class="actions"> 
+			    <center>
+				{% if demande.locked == 1 %}
+					<a class="btn btn-sm btn-success white_text statuCompte" href="{{ path("demande_compte_unlock", { id: demande.id }) }}">Activer</a>
+				{% else %}
+					<a class="btn btn-sm btn-danger white_text statuCompte" href="{{ path("demande_compte_lock", { id: demande.id }) }}">Désactiver</a>
+			    {% endif %}
+			    </center>
+			    </td>
+			</tr>
+		    {% endfor %}
+		</tbody>
+	    </table>
+		
+		
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+        				</button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Sauvegarder</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-11 mt40">
+	<h2 id="DemandeGest" class="pointer styleList" >Comptes Gestionnaire  &#9660;</h2>
+	<div id="listDemandeGest" class="">
+	    <table id="demandesGest" class="display" style="width:100%">
+		<br />
+		<thead>
+		    <tr>
+			    <th><center>Détail</center></th>
+				<th>Nom structure</th>
+				<th>Nom demandeur</th>
+				<th>Type de compte</th>
+				<th><center>Actions</center></th>
+		    </tr>
+		</thead>
+		<tbody>
+		    {% for demande in demandesGest %}
+			<tr>
+				<td>
+					<a class="detailCompteId id{{demande.id}}" href="{{ path('showComptePartenaireModalAjax', {'id':demande.id}) }}" data-toggle="modal" data-target="#myModal" role="button">
+						<font color=#226B9B><center>&#128269;</center>
+					</a>
+				</td>
+
+			    {% for structure in structures %}
+			    	{% if demande.structure_id == structure.id %}
+			    		<td> {{ structure.nom }} </td>
+			    	{% endif %}
+		    	{% endfor %}
+			    {% for contact in contacts %}
+			    	{% if demande.contact_id == contact.id %}
+			    		<td> {{ contact.nom }} {{ contact.prenom }}  </td>
+			    	{% endif %}
+		    	{% endfor %}
+
+			    {% for type in types %}
+			    	{% if demande.type_id == type.id %}
+			    		<td> {{ type.name }} </td>
+			    	{% endif %}
+		    	{% endfor %}
+
+			    <td class="actions"> 
+			    <center>
+				{% if demande.locked == 1 %}
+					<a class="btn btn-sm btn-success white_text statuCompte" href="{{ path("demande_compte_unlock", { id: demande.id }) }}">Activer</a>
+				{% else %}
+					<a class="btn btn-sm btn-danger white_text statuCompte" href="{{ path("demande_compte_lock", { id: demande.id }) }}">Désactiver</a>
+			    {% endif %}
+				</center>
+			    </td>
+			</tr>
+		    {% endfor %}
+		</tbody>
+	    </table>	    
+	</div>
+</div>
+</div>
+</div>
+
+<div class="modal hide fade" id="valideCompteModal">
+    <div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>&#9888;&nbsp;&nbsp;Confirmer la validation</h3>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="valideCompteModalClose">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Etes-vous sûr(e) de vouloir valider cette demande de compte ?</p>
+				<div class="modal-footer">
+					<a href="#" class="btn btn btn-outline-primary btn-sm pull-left" id="valideCompteModalNo">Annuler</a>
+					<a href="#" class="btn btn-primary btn-sm" id="valideCompteModalYes">Confirmer</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal hide fade" id="refuseCompteModal">
+    <div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>&#9888;&nbsp;&nbsp;Confirmer le refus</h3>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="refuseCompteModalClose">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Etes-vous sûr(e) de vouloir refuser cette demande de compte ?</p>
+				<div class="modal-footer">
+					<a href="#" class="btn btn btn-outline-primary btn-sm pull-left" id="refuseCompteModalNo">Annuler</a>
+					<a href="#" class="btn btn-primary btn-sm" id="refuseCompteModalYes">Confirmer</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+        '@AppBundle/Resources/public/js/buttons.html5.min.js'
+        '@AppBundle/Resources/public/js/dataTables.buttons.min.js'
+        '@AppBundle/Resources/public/js/gestionCompte.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

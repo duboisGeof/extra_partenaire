@@ -1,0 +1,19 @@
+<h2>Demande de code d'accès</h2>
+
+<p>Votre demande de code d'accès a bien été validée.</p>
+
+<p> Voici vos identifiants </p>
+
+{% if mail is defined %}
+<p> 
+    Login: {{ login }} <br />
+    Mot de passe : {{ password }} <br />
+</p>
+{% else %}
+<p> 
+    Login: {{ mailResponsable }} <br />
+    Mot de passe : {{ passwordResp }} <br />
+</p>
+{% endif %}
+
+<p> Vous pouvez désormais vous connecter sur le site partenaire </p>

@@ -1,0 +1,27 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<div class="r_cnx_colonneG full">							
+	<h2>Actualités</h2>
+	<br>
+	{% for actualite in listeActualite %}
+		<div class="block">
+			
+				<img src="{{ actualite.url_img }}" alt="Example" class="photoSlider" alt="Logo du régime d'assurance maladie" height="500" width='200' href="{{ path('inscription') }}" />
+				<p class="date black">
+					{{actualite.date_create}}
+					<a class="bleu" href="{{ path('actualite') }}">Rubriques</a>
+				</p>
+				<p >
+					<b>{{actualite.title}}</b><br>
+					{% autoescape false %}
+                        {{actualite.content}}
+                 	{% endautoescape %}
+					<br><br>
+					<div class='green'><div class='droite'><a href=''>Lire la suite</a></div></div>
+				</p>
+			
+					
+		</div>
+		{% endfor %}	
+		</div>
+{% endblock %}

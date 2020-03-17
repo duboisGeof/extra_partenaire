@@ -1,0 +1,32 @@
+/**
+* Contient les css utilisés pour les boutons
+* MAJ par Sylvie le 16 juillet 2018
+* Fichier propre
+**/
+
+.btnValider{
+	margin-bottom:10px;	
+}
+
+button{
+	background-color :#226B9B;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+	padding: 5px 10px!important;
+	margin: 4px 4px;
+	border-radius: 8px !important;
+ }
+
+button:hover {
+    background-color: #539B32; /* Green */
+    color: white;
+}
+
+ .btn-primary:active,
+.btn-primary.active {
+  background-color: #2d6ca2;
+  border-color: #2b669a;
+}
+.btn-primary {background-color: #2d6ca2;
+  border-color: #2b669a;}

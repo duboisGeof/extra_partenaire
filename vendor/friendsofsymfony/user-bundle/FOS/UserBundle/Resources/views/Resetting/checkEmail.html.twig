@@ -1,0 +1,9 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="alert alert-primary" role="alert">
+	    <p>
+			{{ 'Un mail contenant un lien de réinitialisation vous a été envoyé. Veuillez vérifier vos courriers.'|trans({'%email%': email}, 'FOSUserBundle') }}
+		</p>
+</div>
+{% endblock %}

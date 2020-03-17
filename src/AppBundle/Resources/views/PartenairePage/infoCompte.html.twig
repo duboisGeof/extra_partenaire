@@ -1,0 +1,73 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<div class="r_cnx_colonneG full">
+
+	<h2>Vos informations</h2>
+		<div class="block">		
+
+		{{ form_start(form) }}
+
+	   <table>
+	   <tr>
+			<td>{{ form_label(form.designation, "Désignation du partenaire : ") }}&nbsp;</td>
+			<td>{{ form_widget(form.designation) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.adresse, "Adresse : ") }}</td>
+			<td>{{ form_widget(form.adresse) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.CP, "Code postal : ") }}</td>
+			<td>{{ form_widget(form.CP) }}</td>	
+		</tr>
+		<tr>
+			<td>{{ form_label(form.commune, "Commune : ") }}</td>
+			<td>{{ form_widget(form.commune) }}</td>	
+		</tr>
+		<tr><td><button type="submit" class="btn btn-primary">Modifier</button></td></tr>
+		</table>
+
+     </div>
+	 
+	 <div class="block">
+	 <h2>Vos interlocuteurs</h2>
+
+	 	<table><tr><td>Liste des interlocuteurs : </td><td>{{ form_widget(form.interlocuteur) }}<td><button type="submit" class="btn btn-sm btn-info">Modifier</button></td>
+		<td><button type="submit" class="btn btn-sm btn-danger">Supprimer</button></td>
+		</tr></table>
+
+		<table>
+		<br>
+		</div>
+		<div class="block">
+		<button type="submit" class="btn btn-primary">Ajouter un interlocuteur</button>
+
+		<br>
+		</td>
+		</tr>
+		<tr>
+			<td>
+			{{ form_label(form.NomInterloc, "Nom et prénom : ") }}</td>
+			<td>
+				{{ form_widget(form.NomInterloc) }}</td><td>
+		</tr>
+		<tr>
+			<td>
+				{{ form_label(form.TelInterloc, "Téléphone : ") }}</td><td>
+				{{ form_widget(form.TelInterloc) }}</td></tr>
+		
+		<tr>
+			<td>{{ form_label(form.EmailInterloc, "E-mail : ") }}</td>
+			<td>{{ form_widget(form.EmailInterloc) }}</td>
+			<td><button type="submit" class="btn btn-sm btn-primary">Enregistrer</button></td>
+
+		</tr>
+	   
+	</table>
+	 
+	 </div>
+	 </div>
+</div>
+
+{{form_end(form)}} 
+{% endblock %}

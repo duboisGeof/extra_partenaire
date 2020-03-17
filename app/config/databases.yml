@@ -1,0 +1,37 @@
+parameters:
+    database.default_driver: "pdo_mysql"
+    database.default_charset: UTF8
+
+doctrine:
+    dbal:
+        connections:
+            # Ne pas changer le nom de la connexion par défaut
+            default:
+                driver:   %database.default_driver%
+                host:     localhost
+                port:     3306
+                dbname:   partenaire
+                user:     dali931
+                password: sucre931
+                charset:  %database.default_charset%
+
+# Ajoutez à la suite autant de connexions que vous le souhaitez
+#            <nom_de_la_connexion>:
+#                driver:   %database.default_driver%
+#                host:     ~
+#                port:     ~
+#                dbname:   ~
+#                user:     ~
+#                password: ~
+#                charset:  %database.default_charset%
+
+
+# Décommentez ces lignes dans le cas d'une utilisation en mode FICO
+#            fico:
+#                driver:   %database.default_driver%
+#                host:     ~
+#                port:     ~
+#                dbname:   ~
+#                user:     ~
+#                password: ~
+#                charset:  %database.default_charset%

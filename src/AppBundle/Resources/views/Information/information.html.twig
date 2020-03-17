@@ -1,0 +1,69 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets
+			'@AppBundle/Resources/public/css/accordion.css' 
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+{% block body %}
+{% set path = app.request.pathinfo|split('/') %}
+
+	<div class="r_cnx_colonneG full">
+	   <h2 id='titreInformation'>
+		  {{ information.titre }}
+		  
+		  {% if is_granted('ROLE_PFIDASS') %}
+			  {% image '@AppBundle/Resources/public/img/modif.png' %}
+			  <a href="#" data-toggle="modal" data-target="#modalInformation">
+			  <img src="{{ asset_url }}" alt="Modifier" class="modifierTexte id{{information.id}}"  />
+			  </a>
+			  {% endimage %}
+		  {% endif %}
+		  
+	   </h2>
+	   <div class="block blockInformation">
+		  {% autoescape false %}
+			{{ information.text }}
+		  {% endautoescape %}
+	   </div>
+	   {% if information.urlPath!='cookies' %}
+	   <div class="r_cnx_colonneGCE full">
+	   {% if Liste_FAQ[0]['theme'] is defined  %}
+    		<h2>FAQ - {{ Liste_FAQ[0]['theme'] }}</h2>
+		{% else %}
+			<h2>FAQ </h2>
+		{% endif %}
+			
+
+			<div id="accordion">
+				{% for liste in Liste_FAQ %}
+				<h3>{{ liste.question_reformule }}</h3>
+					<div>
+						<h4>{{ liste.reponse_reformule }}<h4>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+	{% block modalInformation %}
+		{%- include '@App/Templates/modalInformation.html.twig' -%}
+	{% endblock %}
+	
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+
+	{% javascripts
+		'@AppBundle/Resources/public/js/information.js'
+		'@AppBundle/Resources/public/js/accordeon.js'
+		%}
+		<script src="{{ asset_url }}" charset="UTF-8"></script>
+	{% endjavascripts %}	
+{% endblock %}
+
+

@@ -1,0 +1,45 @@
+{% block footer %}
+<div class="clear"></div>
+<footer class="wlp-bighorn-footer" role="contentinfo">   
+	<div id="Footer">
+		<ul>
+			<li>
+				<a id="id_lien_info_legales" href="{{ path('infosLegale') }}"
+				   title = "Accéder aux informations">
+					Informations légales
+				</a>
+			</li>
+			<li>
+				<a id="id_lien_copyright" href="{{ path('proprieteIntellectuelle') }}"
+				   title = "Accéder aux informations">
+					Propriété intellectuelle
+				</a>
+			</li>
+			<li>
+				<a id="id_lien_condition_utilisation" href="{{ path('conditionUtilisation') }}"
+				   title = "Accéder aux informations">
+					Conditions d'utilisation
+				</a>
+			</li>
+			<li>
+				<a id="id_lien_aide_footer"
+				   href="{{ path('aide') }}"
+				   title = "Aide">
+					Aide
+				</a>
+			</li>
+		</ul>
+	</div>
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+  {% javascripts 
+        '@AppBundle/Resources/public/js/default/jquery-2.2.4.min.js'
+		'@AppBundle/Resources/public/js/default/jquery-ui.min.js'
+		'@AppBundle/Resources/public/js/default/popper.min.js'
+        '@AppBundle/Resources/public/js/default/*'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+</footer>
+{% endblock %}

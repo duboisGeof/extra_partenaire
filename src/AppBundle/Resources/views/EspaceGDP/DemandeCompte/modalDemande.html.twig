@@ -1,0 +1,162 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Informations détaillées</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			{{ form_start(form)}}
+			{{ form_errors(form)}}
+			<div class="modal-body">
+				<div class="block">
+					<h2>Informations de l'employé</h2>
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.nom)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.nom, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				 	<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.prenom)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.prenom, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.tel)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.tel, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.mail)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.mail, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="block">
+					<h2>Informations du Responsable</h2>
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.nomResponsable)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.nomResponsable, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				 	<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.prenomResponsable)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.prenomResponsable, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.telResponsable)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.telResponsable, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.mailResponsable)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.mailResponsable, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="modal-body">
+				<div class="block">
+					<h2>Informations de la Structure</h2>
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.nomStructure)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.nomStructure, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				 	<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.adresseStructure)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.adresseStructure, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.cpStructure)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.cpStructure, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.communeStructure)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.communeStructure, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.mailDiffusion)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.mailDiffusion, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.type)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.type, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				</div>
+			</div>
+			{{ form_end(form)}}
+
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			</div>
+		</div>
+	</div>
+</div>

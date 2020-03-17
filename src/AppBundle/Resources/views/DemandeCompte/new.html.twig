@@ -1,0 +1,114 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+			'@AppBundle/Resources/public/css/datatableBoostrap.css' 
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 
+			'@AppBundle/Resources/public/css/datepicker.css' 
+			'@AppBundle/Resources/public/css/bouton.css' 			
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+<style>
+	#r_insc_blue{
+		width: 100%;
+	}
+</style>
+
+<div id="r_insc_blue" class="r_cnx_colonneG">
+	<h2>Création de Compte d'Accès Gestionnaire</h2>
+	<div class="r_cnx_cadre_gris" id="toggle_demande">
+		<div id="form_demande" name="form_demande">
+			<style>
+			input[type="text"] {
+			   width: 100%;
+
+			   height: auto;
+			}
+
+
+			select {
+			    height:auto !important;
+				width:100% !important;
+			}
+
+			.clear {
+				clear:both;
+			}
+			</style>
+
+			<div>
+				<div class="block">
+				    {{ form_start(form) }}
+					<div class="form-row">
+					    <div class="col">
+						    
+							{% do form.nomStructure.setRendered() %}
+
+							<div class="form-group">
+								<label for="form_nom">Nom du Gestionnaire</label>
+							    {{ form_errors(form.nom) }}
+							    {{ form_widget(form.nom) }}
+						    </div>
+
+							<div class="form-group">
+								<label for="form_prenom">Prénom du Gestionnaire</label>
+							    {{ form_errors(form.prenom) }}
+							    {{ form_widget(form.prenom) }}
+						    </div>
+
+							<div class="form-group">
+								<label for="form_tel">Téléphone du Gestionnaire</label>
+							    {{ form_errors(form.tel) }}
+							    {{ form_widget(form.tel) }}
+						    </div>
+
+							<div class="form-group">
+								<label for="form_mail">Mail du Gestionnaire</label>
+							    {{ form_errors(form.mail) }}
+							    {{ form_widget(form.mail) }}
+						    </div>
+
+							{% do form.nomResponsable.setRendered() %}
+							{% do form.prenomResponsable.setRendered() %}
+							{% do form.telResponsable.setRendered() %}
+							{% do form.mailResponsable.setRendered() %}
+							{% do form.type.setRendered() %}
+							{% do form.mailDiffusion.setRendered() %}
+							{#{% do form.newsletter.setRendered() %}#}
+							{% do form.adresseStructure.setRendered() %}
+							{% do form.cpStructure.setRendered() %}
+							{% do form.communeStructure.setRendered() %}
+					    </div>
+					</div>
+					<center><button id="submit_gestionnaire" class="r_btsubmit r_btlien">Créer</button></center>
+				    {{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+    	'@AppBundle/Resources/public/js/datatable.min.js'
+        '@AppBundle/Resources/public/js/buttons.html5.min.js'
+        '@AppBundle/Resources/public/js/datepicker.min.js'
+		'@AppBundle/Resources/public/js/buttons.colVis.min.js'
+        '@AppBundle/Resources/public/js/datepicker.js'
+        '@AppBundle/Resources/public/js/jszip.min.js'
+        '@AppBundle/Resources/public/js/app.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

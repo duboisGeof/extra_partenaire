@@ -1,0 +1,149 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Informations détaillées</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			{{ form_start(form)}}
+			{{ form_errors(form)}}
+			<div class="modal-body">
+				<div class="block">
+					<h2>Informations de Compte</h2>
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.email)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.email, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				 	<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(form.type)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(form.type, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				</div>
+			</div>
+			{{ form_end(form)}}
+
+			{{ form_start(formContact)}}
+			{{ form_errors(formContact)}}
+			<div class="modal-body">
+				<div class="block">
+					<h2>Informations de Contact</h2>
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formContact.nom)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formContact.nom, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				 	<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formContact.prenom)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formContact.prenom, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formContact.tel)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formContact.tel, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formContact.type)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formContact.type, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+				</div>
+			</div>
+			{{ form_end(formContact)}}
+
+			{{ form_start(formStructure)}}
+			{{ form_errors(formStructure)}}
+			<div class="modal-body">
+				<div class="block">
+					<h2>Informations de Structure</h2>
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formStructure.nom)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formStructure.nom, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formStructure.adresse)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formStructure.adresse, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formStructure.cp)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formStructure.cp, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formStructure.commune)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formStructure.commune, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formStructure.mailDiffusion)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formStructure.mailDiffusion, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+
+					<div class="row form-group">
+						<div class="col-2">
+							{{ form_label(formStructure.type)}}
+						</div>
+						<div class="col-10">
+							{{ form_widget(formStructure.type, { 'attr':{'disabled':'disabled'} })}}
+						</div>
+					</div>
+					<a class="btn btn-primary save" href="{{ path("gestion_structure") }}">Modifier la Structure</a>
+				</div>
+			</div>
+			{{ form_end(formStructure)}}
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			</div>
+		</div>
+	</div>
+</div>

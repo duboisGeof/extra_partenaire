@@ -1,0 +1,72 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<div class="r_cnx_colonneG full">
+	<h2>Demande de compte</h2>
+
+	<div class="block">
+	    <table class="table" style="width:100%">
+		<tbody>
+		    <tr>
+			<td>Nom structure</td>
+			<td> {{ demande.nomStructure }} </td>
+		    </tr>
+		    <tr>
+			<td>Nom responsable</td>
+			<td> {{ demande.nomResponsable }} {{ demande.prenomResponsable }} </td>
+		    </tr>
+		    <tr>
+			<td>Téléphone responsable</td>
+			<td> {{ demande.telResponsable }} </td>
+		    </tr>
+		    <tr>
+			<td>Mail responsable</td>
+			<td> {{ demande.mailResponsable }} </td>
+		    </tr>
+		    <tr>
+			<td>Nom demandeur</td>
+			<td> {{ demande.nom }} {{ demande.prenom }} </td>
+		    </tr>
+		    <tr>
+			<td>Téléphone demandeur</td>
+			<td> {{ demande.tel }} </td>
+		    </tr>
+		    <tr>
+			<td>Mail demandeur</td>
+			<td> {{ demande.mail }} </td>
+		    </tr>
+		    <tr>
+			<td>Type de compte</td>
+			{% for type in types %}
+		    	{% if demande.type_id == type.id %}
+		    		<td> {{ type.name }} </td>
+		    	{% endif %}
+		    {% endfor %}
+		    </tr>
+		    <tr>
+			<td>Statut</td>
+			{% for statu in status %}
+		    	{% if demande.status_id == statu.id %}
+		    		<td> {{ statu.name }} </td>
+		    	{% endif %}
+	    	{% endfor %}
+		    </tr>
+		    <tr>
+			<td>Mail de Diffusion</td>
+			<td> {{ demande.mailDiffusion }} </td>
+		    </tr>
+		    <tr>
+			<td>Newsletter</td>
+			{% if demande.newsletter == true %}
+	    		<td> Inscrit </td>
+	    	{% else %}
+	    		<td> Non-inscrit </td>
+	    	{% endif %}
+		    </tr>
+		</tbody>
+	    </table>	    
+	</div>
+</div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

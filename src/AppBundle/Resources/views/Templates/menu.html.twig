@@ -1,0 +1,79 @@
+{% block menu %}
+<nav>
+
+<a tabindex="-1" class="r_lien_image" href="{{ path('index') }}" title="Accéder à l'accueil" >
+</a>
+	<ul id="navigation" class="navigation">
+		<li class ="menu lienNiveau1 toggleSubMenu">
+            <a href="" title="Les Actualites" class="hover">Les actualités<i class="arrow right"></i></a>
+            <ul class="subMenu">
+				<li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('_route') == 'Creer_actualites' %}active{% endif %}" href="{{ path('Creer_actualites') }}" title="Creer une actualite">Creer une Actualité</a>
+                </li>
+				<li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'Historique_actualites' %}active{% endif %}" href="Historique_actualites" title="Historique des actualites">Historique</a>
+                </li>
+            </ul>
+        </li>
+
+		<li class ="menu lienNiveau1 toggleSubMenu">
+            <a href="" title="Accès aux droits et FAQ" class="hover">Accès aux droits et FAQ<i class="arrow right"></i></a>
+            <ul class="subMenu">
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'PUMA' %}active{% endif %}" href="{{ path('information', {url:"PUMA"}) }}" title="Protection Universelle Maladie">PUMA</a>
+                </li>
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'CMUCACS' %}active{% endif %}" href="{{ path('information', {url:"CMUCACS"}) }}" title="Complémentaire santé solidaire">Complémentaire santé solidaire</a>
+                </li>
+                <li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'AME' %}active{% endif %}" href="{{ path('information', {url:"AME"}) }}" title="Aide Médicale Etat">AME</a>
+                </li>
+				<li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'DROITSRESSORT' %}active{% endif %}" href="{{ path('information', {url:"DROITSRESSORT"}) }}" title="Droits des Ressortissants européens inactifs">Droits des Ressortissants européens inactifs</a>
+                </li>
+				<li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'AIDEFI' %}active{% endif %}" href="{{ path('information', {url:"AIDEFI"}) }}" title="Aides Financières">Aides Financières et AFCS</a>
+                </li>
+				{#<li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'AIDEFICOMPL' %}active{% endif %}" href="{{ path('information', {url:"AIDEFICOMPL"}) }}" title="Aide Financière à la Complémentaire Santé">AFCS</a>
+                </li>#}
+{#				<li class="ssmenu niveau2">
+                    <a class="lienNiveau2 {% if app.request.attributes.get('url') == 'CARTEVITALE' %}active{% endif %}" href="{{ path('information', {url:"CARTEVITALE"}) }}" title="Carte Vitale">Carte Vitale</a>
+                </li>#}
+            </ul>
+        </li>
+	
+		{#<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'situation' %}active{% endif %}" href="{{ path('information', {url:"situation"}) }}" title="Les situations">Situations Particulières</a>
+		</li>
+		<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'offreSante' %}active{% endif %}" href="{{ path('information', {url:"offreSante"}) }}" title="Les offres et les services en santé">Offres et services en santé</a>
+		</li>
+
+		<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'serviceSocial' %}active{% endif %}" href="{{ path('information', {url:"serviceSocial"}) }}" title="Le service social">Le service social</a>
+		</li>
+		#}
+{#		<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'offrePartenaire' %}active{% endif %}" href="{{ path('information', {url:"offrePartenaire"}) }}" title="Les offres de service partenariat de la CPAM">Les offres de service partenariat de la CPAM</a>
+		</li>#}
+
+		{#	<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'infosPartenaire' %}active{% endif %}" href="{{ path('information', {url:"infosPartenaire"}) }}" title="L'information aux partenaires">L'information aux partenaires</a>
+		</li>#}
+
+		<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'infosAidesSoins' %}active{% endif %}" href="{{ path('information', {url:"infosAidesSoins"}) }}" title="Aide à l'accès aux soins">Aide à l'accès aux soins</a>
+		</li>
+		<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'newsletter' %}active{% endif %}" href="#" title="L'information aux partenaires">Newsletters</a>
+		</li>
+
+		{#<li class="menu niveau1">
+			<a class="lienNiveau1 {% if app.request.attributes.get('url') == 'mediation' %}active{% endif %}" href="{{ path('information', {url:"mediation"}) }}" title="la médiation/la conciliation">La médiation/la conciliation</a>
+		</li>#}
+		{# permet de faire une marge entre le menu et le footer lorsque l'ont depli le menu #}
+		{#		<div class='mt50'></div>#}
+	</ul>
+</nav>
+{% endblock %}

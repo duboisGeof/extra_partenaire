@@ -1,0 +1,13 @@
+parameters:
+    bundle.name: AppBundle
+    name: 'Extranet Partenaire'
+    version: '1.0'
+    description: 'Description en une ligne'
+    indicationLogo: ''
+    assistance: ''
+    secret: d606f26b35f8a013ae84f7435efd1ae2
+    mailer_transport: smtp
+    mailer_host : smtp.cpam-bobigny.cnamts.fr
+    mailer_user : ''
+    mailer_password : ''
+    Transmission_dossier_Recapitulatif_NbMois: 15

@@ -1,0 +1,48 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 
+
+			%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+{% block body %}
+<div class="r_cnx_colonneG full">							
+	<h2> Statistiques</h2>
+	<label>Personnalisé:</label>
+	<select id='Stats_partenaire'>{% for key,partenaire in partenaires %}
+							{% if key==0 %}
+							<option value=''>Globale
+							</option>
+							{% else %}
+							<option value={{partenaire.partenaire_id}}>{{partenaire.nomStructure}}</option>
+							{% endif %}
+							
+							{% endfor %}
+						</select>
+	<div class='content_stats'>
+
+	</div>	
+	<div><b><u>Nombre de Partenaire avec un délai négatif:</u></b><span id='del_negatif'>{{PartenaireDelaiNegatif.somme}}</span></div>
+
+</div>
+{% endblock %}
+ 
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+
+		'@AppBundle/Resources/public/js/chart.js'
+        '@AppBundle/Resources/public/js/Stats.js'
+		'@AppBundle/Resources/public/js/chart.min.js'
+		'@AppBundle/Resources/public/js/chart-plugin-labels.min.js'
+    %}
+    <script src="{{ asset_url }}" charset="UTF-8"></script>
+    {% endjavascripts %}
+{% endblock %}

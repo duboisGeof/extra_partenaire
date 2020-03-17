@@ -1,0 +1,36 @@
+/* css propre (Sylvie) */
+
+.ui-accordion .ui-accordion-header{
+    color: #444;
+	background-color:#E3E7EB; 
+	
+	font-weight: bold;
+
+}
+
+.ui-state-active{
+    background-color: #C4CDD5!important;
+	border: none!important;
+	
+}
+
+.ui-state-hover{
+	background-color: #C4CDD5!important;
+}
+
+.ui-accordion-header:after{
+    content: '\002B'!important; /* Unicode character for "plus" sign (+) */
+    font-size: 15px!important;
+	color: #777;
+    float: right!important;
+	margin-left: 5px!important;
+}
+
+.ui-state-active:after{
+    content: "\2212"!important; /* Unicode character for "minus" sign (-) */
+	font-size: 15px!important;
+    color: #777;
+    float: right!important;
+    margin-left: 5px!important;
+}
+

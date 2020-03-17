@@ -1,0 +1,47 @@
+<h2>Demande de code d'accès</h2>
+
+<p>Un utilisateur a fait une nouvelle demande de code d'accès</p>
+
+<div class="block">
+    <table class="table" style="width:100%">
+	<tbody>
+	    <tr>
+		<td>Nom structure</td>
+		<td> {{ demande.nomStructure }} </td>
+	    </tr>
+	    <tr>
+		<td>Nom responsable</td>
+		<td> {{ demande.nomResponsable }} {{ demande.prenomResponsable }} </td>
+	    </tr>
+	    <tr>
+		<td>Téléphone responsable</td>
+		<td> {{ demande.telResponsable }} </td>
+	    </tr>
+	    <tr>
+		<td>Mail responsable</td>
+		<td> {{ demande.mailResponsable }} </td>
+	    </tr>
+	    <tr>
+		<td>Nom demandeur</td>
+		<td> {{ demande.nom }} {{ demande.prenom }} </td>
+	    </tr>
+	    <tr>
+		<td>Téléphone demandeur</td>
+		<td> {{ demande.tel }} </td>
+	    </tr>
+	    <tr>
+		<td>Mail demandeur</td>
+		<td> {{ demande.mail }} </td>
+	    </tr>
+	    <tr>
+		<td>Type de compte</td>
+		<td> {{ demande.type.name }} </td>
+	    </tr>
+	    <tr>
+		<td>Statut</td>
+		<td> {{ demande.status.name }} </td>
+		
+	    </tr>
+	</tbody>
+    </table>	    
+</div>

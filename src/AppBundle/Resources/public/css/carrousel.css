@@ -1,0 +1,41 @@
+/* css pour le caroussel : laissé sans épuration */
+
+.carrousel h2{
+	padding-left:10px;
+	padding-top: 10px;
+}
+
+.flexslider .slides img{
+	width:145px !important;
+	height:120px !important;
+}
+
+.flex-viewport ul{
+	margin: 15px 0 15px 0 !important;	
+}
+
+.carousel .c-navig-dot {
+	top:-33px;
+}
+
+.carousel .c-content {
+	height:160px;
+	width:307px;
+}
+
+.carousel .c-content li {
+	background-color:#f5f5f5;	
+}
+
+.carousel .c-navig-dot li.current button {
+	background-color:white;
+	opacity:1;
+	width:14px;
+	height:14px;
+	border-radius:7px;
+}
+
+.carousel .c-navig-dot button {
+	background-color:white;
+	opacity:0.6;
+}

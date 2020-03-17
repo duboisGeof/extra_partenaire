@@ -1,0 +1,45 @@
+{% set path = app.request.pathinfo|split('/') %}
+<!DOCTYPE html>
+<html>
+    <head>	
+	{% image '@AppBundle/Resources/public/img/favicon.ico' %}
+        <link rel="shortcut icon" href="{{ asset_url }}" type="image/x-icon">
+	{% endimage %}
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=11; IE=EDGE" />
+    	{% block head %}
+            {%- include '@App/Templates/head.html.twig' -%}
+        {% endblock %}
+    </head>
+    <body>
+
+	{%- include '@App/Templates/entete.html.twig' -%}
+	{#{% if is_granted('ROLE_GESTIONNAIRE') %}
+    	{%- include '@App/Templates/menuGestionnaire.html.twig' -%} 
+    {% else %}
+    	{%- include '@App/Templates/menu.html.twig' -%}
+    {% endif %}
+	#}
+    <div class="blockContainer">
+		<div class="blockMenu">
+			{% block menu %}
+			 	{% if path[1] == 'gestionnaire' %}	
+					{%- include '@App/Templates/menuGestionnaire.html.twig' -%}
+				{% elseif path[1] == 'partenaire' %}	
+					{%- include '@App/Templates/menuPartenaire.html.twig' -%}
+				{% else %}
+					{%- include '@App/Templates/menu.html.twig' -%}
+				{% endif %}
+			{% endblock %}
+		</div>
+   
+		<div class="content">
+			{% block body %}{% endblock %}
+			{% block connect %} {% endblock %}
+		</div>
+		{% block footer %}
+	{%- include '@App/Templates/footer.html.twig' -%}
+{% endblock %}
+    </div>
+
+    </body>
+</html>

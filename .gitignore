@@ -1,0 +1,21 @@
+# Ignorer
+/app/cache/dev/*
+/app/cache/prod/*
+/app/logs/*
+/app/sessions/*
+/conf
+/log
+/nbproject
+/web/bundles/*
+/web/css/*
+/web/images/*
+/web/js/*
+/.ssh
+/.bash_history
+/.gitconfig
+/.viminfo
+/logFind
+
+# Mais ne pas ignorer
+!/src/CNAMTS/PHPK
+!*.keep

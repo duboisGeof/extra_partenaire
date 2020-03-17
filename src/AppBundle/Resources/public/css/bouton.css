@@ -1,0 +1,75 @@
+/**
+*  utilisé que pour la connexion
+* A revoir pour utiliser bootstrap
+**/
+
+.r_btsubmit {
+    background-color: #287FB8;
+    color: #fff;
+    -moz-user-select: none;
+    background-image: none;
+    border: 2px solid #287FB8;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: normal;
+	line-height: 1.4;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;  
+    margin: 5px;
+
+}
+
+.r_btsubmit:hover, .r_btsubmit:focus {
+	background-color: #23AEE5;
+	border: 2px solid #23AEE5;
+    color: #fff;
+    text-decoration : none;
+}
+
+.r_btsubmit:active {
+	background-color: #1F6E8C;
+	border: 1px solid #1F6E8C;
+    color: #fff;
+    text-decoration : none;
+}
+
+.r_btsubmit:disabled, .r_btsubmit.r_disabled {
+	cursor:not-allowed;
+	pointer-events:none;
+	opacity:0.55;
+	filter:alpha(opacity=55);
+}
+
+/* bouton page de connexion à harmoniser */
+
+#id_r_cnx_btn_submit {
+	background-color: #3FA72E;
+	border-color: #3FA72E;
+	border: 2px solid #3FA72E;
+	padding: 6px 12px;
+	margin: 5px;
+}
+
+.r_cnx_page #id_r_cnx_btn_submit:hover, .r_cnx_page #id_r_cnx_btn_submit:focus {
+	background-color: #69c72c;
+	border: 2px solid #69c72c;
+}
+
+.r_cnx_page #id_r_cnx_btn_submit:active {
+	background-color: #3FA72E;
+}
+
+#id_r_cnx_btn_code{
+    width: 98%;
+}
+
+.liens .btn-primary{
+    color:white !important;
+    margin: 0 !important;
+}
+
+.white_text {
+    color: white !important;
+}

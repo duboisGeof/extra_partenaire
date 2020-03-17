@@ -1,0 +1,28 @@
+<div id="r_insc_blue" class="r_cnx_colonneG">
+	<h2>Réinitialisez votre mot de passe</h2>
+	<div class="r_cnx_cadre_gris">
+		<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+	    {# {{ form_widget(form) }} #}
+	    <!--<div>
+	        <input type="submit" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}" />
+	    </div>-->
+
+				<div>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf }}" />
+					<span class="zone_champ_saisie"><input id="pw1" placeholder="Nouveau mot de passe" tabindex="7"  name="_pw" type="password" class="champ" title="Mot de passe" value=""></span>
+					<span class="zone_champ_saisie"><input id="pw2" placeholder="Confirmez votre nouveau mot de passe" tabindex="7"  name="_pw2" type="password" class="champ" title="Nouveau mot de passe" value=""></span>
+
+					<br>
+					<div class="row justify-content-center">
+					<div class="btnValider">
+						<button type="submit" class="btn btn-primary ">Réinitialiser</button>
+					</div>
+					</div>
+				</div>
+
+			
+
+		</form>
+	</div>
+</div>

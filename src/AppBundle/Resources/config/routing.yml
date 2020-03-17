@@ -1,0 +1,409 @@
+index:
+    path: /
+    defaults: { _controller: 'AppBundle:Default:index' }
+actualite:
+    path: /actualites
+    defaults: { _controller: 'AppBundle:Actualites/Actualite:index' }
+Historique_actualites:
+    path: /Historique_actualites
+    defaults: { _controller: 'AppBundle:Actualites/Actualite:AffichageListeActualites' }
+Creer_actualites:
+    path: /Creer_actualites
+    defaults: { _controller: 'AppBundle:Actualites/Actualite:creation' }
+# Début gestion user
+inscription:
+    path: /inscription
+    defaults: { _controller: 'AppBundle:Inscription:index' }
+forgotmdp:
+    path: /forgotmdp
+    defaults: { _controller: 'AppBundle:Inscription:forgotMDP' }
+verifReinitMdpAjax:
+    path: /forgotmdp/verif
+    defaults: { _controller: 'AppBundle:Inscription:verifReinitMdp' }
+    options:
+        expose: true
+connection:
+    path: /connection
+    defaults: { _controller: 'AppBundle:Inscription:connection' }
+# Fin gestion user
+# Début information (génération du texte informatif)
+information:
+    path: /information/{url}
+    defaults: { _controller: 'AppBundle:Information/Information:index' }
+ModifierInformationModalAjax:
+    path: /showModalInformation
+    defaults: { _controller: 'AppBundle:Information/Information:modifier' }
+    options:
+        expose: true
+# Fin information
+# Début Root pour la FAQ
+RedigerQuestion:
+    path: /partenaire/Partenaire_FAQ_Question{id}
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireFaq:NouvQuestion' }  
+envoi_question:
+    path: /Partenaire_FAQ_QuestionEnvoi
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireFaq:envMail' }  
+FAQReponseVosQuestions:
+    path: /partenaire/Partenaire_Reponse_Question
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireFaq:RepQuestion' } 
+FAQConsultQuestion:
+    path: /gestionnaire/Gestionnaire_FAQ_Liste_Questions
+    defaults: { _controller: 'AppBundle:Gestionnaire/GestionFaq:index' }
+FAQReponseQuestion:
+    path: /gestionnaire/Gestionnaire_FAQ_Reponse_Questions/{qid}
+    defaults: { _controller: 'AppBundle:Gestionnaire/GestionFaq:ReponseQuestion' }
+FAQGestionnaireQR:
+    path: /gestionnaire/Gestionnaire_FAQ_Rediger_Question_Reponse
+    defaults: { _controller: 'AppBundle:Gestionnaire/GestionFaq:NouvQuestionReponse' }
+FAQGestionnaireGestion:
+    path: /gestionnaire/Gestionnaire_Gerer_FAQ
+    defaults: { _controller: 'AppBundle:Gestionnaire/GestionFaq:Tableau_consult_FAQ' }
+FAQSuppQuestion:
+    path: /gestionnaire/Gestionnaire_Suppr_FAQ{id}
+    defaults: { _controller: 'AppBundle:Gestionnaire/GestionFaq:Suppression_FAQ' }
+FAQModifQuestion:
+    path: /gestionnaire/Gestionnaire_Modif_FAQ{id}
+    defaults: { _controller: 'AppBundle:Gestionnaire/GestionFaq:Modifier_FAQ' }
+# Fin Root pour la FAQ
+# Début offre partenaire
+#offrePartenaire:
+#    path: /partenaire/offre_servicePartenaire
+#    defaults: { _controller: 'AppBundle:OffresPartenaire/OffrePartenaire:index' }
+# offrePartenaireEnCours:
+#   path: /partenaire/offre_servicePartenaireEnCours
+#    defaults: { _controller: 'AppBundle:OffresPartenaire/OffrePartenaire:AfficheOffreCours' }
+#OffrePartenaireSuppr:
+#    path: /partenaire/offre_servicePartenaireSupprOffre
+#    defaults: { _controller: 'AppBundle:OffresPartenaire/OffrePartenaire:OffreServiceSuppr' }
+#OffrePartenaireMail:
+#    path: /partenaire/offre_servicePartenaireMail
+#    defaults: { _controller: 'AppBundle:OffresPartenaire/OffrePartenaire:envMail' }
+#offrePartenaire:
+#    path: /partenaire/offre_servicePartenaire
+#    defaults: { _controller: 'AppBundle:OffresPartenaire/OffrePartenaire:index' }
+# Fin offre partenaire
+# Début panier
+panierDossiers:
+    path: /Partenaire_Panier_Dossiers
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:consultPanier' }
+PartenaireSupport:
+    path: /partenaire/Partenaire_Support_Transmission
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:index' }
+PartenaireSupportMail:
+    path: /Partenaire_Support_TransmissionMail
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:envMail' }
+PartenaireRecapitulatif:
+    path: /partenaire/Partenaire_Support_Recapitulatif
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:consultRecapitulatif' }
+#PartenaireStatistiques:
+#    path: /partenaire/Partenaire_Statistiques
+#    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:Statistiques' }
+# PartenaireHistoAtelier:
+#    path: /partenaire/Partenaire_Ateliers
+#    defaults: { _controller: 'AppBundle:Partenaire/PartenaireAteliers:index' }
+# Fin panier 
+# Début newsletter
+ListeNewsletter:
+    path: /gestionnaire/Liste_newsletters
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:liste'}
+CreationNewsletters:
+    path: /gestionnaire/Creation_newsletters
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:creation' }
+ModifierNewsletters:
+    path: /gestionnaire/Modifier_newsletters/{id}
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:modifier' }
+ApercuNewsletterModalAjax:
+    path: /gestionnaire/Apercu_newsletter
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:apercuNewsletterModalAjax' }
+    options:
+        expose: true
+ApercuNewsletterIdModalAjax:
+    path: /gestionnaire/Apercu_newsletter/{id}
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:apercuNewsletterIdModalAjax' }
+    options:
+        expose: true
+SuppressionNewsletterAjax:
+    path: /gestionnaire/Supprimer_newsletter/{id}
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:suppressionNewsletterAjax' }
+    options:
+        expose: true
+EnvoyerMailNewsletterTestAjax:
+    path: /gestionnaire/Mail_test
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:EnvoyerMailTestAjax' }
+    options:
+        expose: true
+EnvoyerMailNewsletterAjax:
+    path: /gestionnaire/Mail
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:EnvoyerMailNewsletterAjax' }
+    options:
+        expose: true
+CreationPdf:
+    path: /gestionnaire/Creation_pdf
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:creerPdf' }
+    options:
+        expose: true
+PartenaireNewsletter: 
+    path: /partenaire/Partenaire_Newsletter
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:partenaire' }
+PartenaireNewsletterAjax:
+    path: /partenaire/Partenaire_Newsletter_action
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:partenaireAjax' }
+    options:
+        expose: true
+EnvoiNewsletter:
+    path: /gestionnaire/EnvoiNewsletter
+    defaults: { _controller: 'AppBundle:Newsletters/AffichageListeNewsletters:listeAbonne'}
+#Fin newsletter
+# Début page du footer
+infosLegale:
+    path: /informations-legales
+    defaults: { _controller: 'AppBundle:Footer/InfosLegale:index' }
+proprieteIntellectuelle:
+    path: /propriete-intellectuelle
+    defaults: { _controller: 'AppBundle:Footer/ProprieteIntellectuelle:index' }
+conditionUtilisation:
+    path: /condition-utilisation
+    defaults: { _controller: 'AppBundle:Footer/Condition:index' }
+aide:
+    path: /aide
+    defaults: { _controller: 'AppBundle:Footer/Aide:index' }
+# Fin page du footer
+# Début Commande Support
+commande:
+    path: /partenaire/commande_supports
+    defaults: { _controller: 'AppBundle:Partenaire/CommandeSupport:index' }
+panierCommandeSupport:
+    path: /partenaire/commande_supports_panier
+    defaults: { _controller: 'AppBundle:Partenaire/CommandeSupport:panier' }
+#Fin Commande Support
+# Début information du partenaire
+contactService:
+    path: /partenaire/contact-Service
+    defaults: { _controller: 'AppBundle:Partenaire/EspacePartenaire:contactService' }
+espacePartenaire:
+    path: /partenaire/espace_Partenaire
+    defaults: { _controller: 'AppBundle:Partenaire/EspacePartenaire:index' }
+infoCompte:
+    path: /partenaire/info-Compte
+    defaults: { _controller: 'AppBundle:Partenaire/EspacePartenaire:infoCompte' }
+# Fin information du partenaire
+espaceGestionnaire:
+    path: /gestionnaire/espace_Gestionnaire
+    defaults: { _controller: 'AppBundle:Gestionnaire/EspaceGestionnaire:index' }
+# Début PSA Gestionnaire
+PSAAffichageDossiersPartenaires:
+    path: /gestionnaire/PSA_Gestion_Dossiers_Partenaires/{id}
+    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:PSAAffichageDossiersPartenaires' }
+# StatsDossiers:
+#     path: /gestionnaire/StatsDossiers
+#    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:StatsDossiers'}
+PSAAffichageDossiersPartenairesEnCours:
+    path: /gestionnaire/PSAAffichageDossiersPartenairesEnCours/{id}
+    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:PSAAffichageDossiersPartenairesEnCours' }
+    options:
+        expose: true
+ConsultationDossiers:
+    path: /gestionnaire/ConsultationDossiers
+    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:ConsultationDossiers'}
+ReceptionDossiers:
+    path: /gestionnaire/ReceptionDossiers
+    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:ReceptionDossiers'}
+DetailDate_ReceptionModal:
+    path: /gestionnaire/DetailDate_ReceptionModal/{id}
+    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:DetailDate_ReceptionModal'}
+    options:
+       expose: true
+InsertDate_ReceptionModal:
+    path: /gestionnaire/InsertDate_ReceptionModal
+    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:InsertDate_ReceptionModal'}
+    options:
+       expose: true
+DetailDossierPartenaireModalAjax:
+    path: /Detail-dossier/{id}
+    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:detailModalAjax'}
+    options:
+        expose: true
+# Fin PSA Gestionnaire
+# Début commande support
+COMMGestionCommande:
+    path: /gestionnaire/Comm_Gestion_Commandes_Supports
+    defaults: { _controller: 'AppBundle:Gestionnaire/COMM:COMMGestionCommandesSupports' }
+CommGestionSupport:
+    path: /gestionnaire/Comm_Affichage_Commandes_Supports
+    defaults: { _controller: 'AppBundle:Gestionnaire/COMM:COMMAffichageCommandesSupports' }
+# Fin commande support
+# Début offre partenaire
+# CreationOffresPartenaire:
+#    path: /gestionnaire/Creation_Offres_Partenaire
+#    defaults: { _controller: 'AppBundle:Gestionnaire/OffresPartenaire:ajout' }
+# ListeOffresPartenaire:
+#    path: /gestionnaire/Liste_Offres_Partenaire
+#    defaults: { _controller: 'AppBundle:Gestionnaire/OffresPartenaire:liste' }
+#ModifierOffresPartenaire:
+#    path: /gestionnaire/Modifier_Offres_Partenaire/{id}
+#    defaults: { _controller: 'AppBundle:Gestionnaire/OffresPartenaire:modifier' }
+#SupprimerOffresPartenaire:
+#    path: /gestionnaire/Supprimer_Offres_Partenaire/{id}
+#    defaults: { _controller: 'AppBundle:Gestionnaire/OffresPartenaire:supprimer' }
+# Fin offre partenaire
+# Début dossier partenaire
+SupprimerDossierPartenaire:
+    path: /partenaire/Supprimer_Dossier_Partenaire/{id}
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:supprimer' }
+    options:
+        expose: true
+ModifierDossierPartenaire:
+    path: /Modifier_Dossier_Partenaire/{id}
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:modifierAjax' }
+    options:
+        expose: true
+AppelXML:
+    path: /AppelXML
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:LireXMLAjax'}
+    options:
+        expose: true
+DetailStats:
+    path: /DetailStats
+    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:DetailStats' }
+    options:
+        expose: true
+# Fin dossier partenaire
+# Début User & Demande
+demande_compte_creer:
+    path: /gestionnaire/demande-compte/creer
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:new' }
+demande_compte_list:
+    path: /gestionnaire/demande-compte/list
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:list' }
+#demande_compte_shows:
+#    path: /gestionnaire/demande-compte/{id}/shows
+#    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:showDemande' }
+showComptePartenaireModalAjax:
+    path: /gestionnaire/demande-compte/{id}/show
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:showComptePartenaireModalAjax' }
+    options:
+        expose: true
+#showCompteGestionnaireModalAjax:
+#    path: /gestionnaire/demande-compte/{id}/showGestionnaire
+#    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:showCompteGestionnaireModalAjax' }
+#    options:
+#        expose: true
+showCompteAttenteModalAjax:
+    path: /gestionnaire/demande-compte/{id}/modifierDemande
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:showCompteAttenteModalAjax' }
+    options:
+        expose: true
+modifierComptePartenaireModalAjax:
+    path: /gestionnaire/demande-compte/{id}/modifierPartenaire
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:modifierComptePartenaireModalAjax' }
+    options:
+        expose: true
+
+demande_compte_show_user:
+    path: /gestionnaire/demande-compte/{id}/showUser
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:showUser' }
+demande_compte_validate:
+    path: /gestionnaire/demande-compte/{id}/valider
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:validate' }
+demande_compte_refuse:
+    path: /gestionnaire/demande-compte/{id}/refuser
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:refuse' }
+demande_compte_lock:
+    path: /gestionnaire/demande-compte/{id}/desactiver
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:lock' }
+demande_compte_unlock:
+    path: /gestionnaire/demande-compte/{id}/activer
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:unlock' }
+demande_compte_new:
+    path: /demande-de-compte
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:new' }
+demande_compte_confirm:
+    path: /demande-de-compte/confirm
+    defaults: { _controller: 'AppBundle:EspaceGDP/DemandeCompte:confirm' }
+#fos_surcharge
+fos_user_resetting_check_email:
+    path: /resetting/reset/{token}
+    defaults: { _controller: 'AppBundle:Inscription:forgotMDP' }
+user_logout:
+    pattern: /logout
+#partenariat
+demande_partenariat:
+    path: /partenaire/partenariat/demande
+    defaults: { _controller: 'AppBundle:Partenariat/Partenariat:demande' }
+info_partenariat:
+    path: /partenaire/partenariat/info
+    defaults: { _controller: 'AppBundle:Partenariat/Partenariat:info' }
+presentation_partenariat:
+    path: /partenaire/partenariat/presentation
+    defaults: { _controller: 'AppBundle:Partenariat/Partenariat:presentation' }
+#structure
+gestion_structure:
+    path: /gestionnaire/structure/gestion
+    defaults: { _controller: 'AppBundle:Structure/Structure:liste' }
+#Route a supprimer
+#serviceSocial:
+#    path: /service_social
+#    defaults: { _controller: 'AppBundle:ServiceSocial/ServiceSocial:index' }
+#Accès aux droits et FAQ
+#PUMA:
+#    path: /PUMA
+#    defaults: { _controller: 'AppBundle:AccesDroitsFAQ/PUMA:index' }
+#CMUCACS:
+#    path: /CMU_CACS
+#    defaults: { _controller: 'AppBundle:AccesDroitsFAQ/CMUCACS:index' }	
+#AME:
+#    path: /AME
+#    defaults: { _controller: 'AppBundle:AccesDroitsFAQ/AME:index' }	
+#DROITSRESSORT:
+#    path: /Droits_ressortissants
+#    defaults: { _controller: 'AppBundle:AccesDroitsFAQ/DroitsRessortissants:index' }	
+#AIDEFI:
+#      path: /Aides_Financieres
+#      defaults: { _controller: 'AppBundle:AccesDroitsFAQ/AideFi:index' }
+#AIDEFICOMPL:
+#      path: /Aides_Financieres_complementaire_sante
+#      defaults: { _controller: 'AppBundle:AccesDroitsFAQ/AideFiCompl:index' }
+#CARTEVITALE:    
+#      path: /Carte_Vitale
+#      defaults: { _controller: 'AppBundle:AccesDroitsFAQ/CarteVitale:index' }
+#mediation:
+#    path: /mediation
+#    defaults: { _controller: 'AppBundle:Mediation/Mediation:index' }
+#Fin Accès aux droits et FAQ	
+#Root pour la FAQ
+#infosPartenaire:
+#    path: /information_partenaires
+#    defaults: { _controller: 'AppBundle:InfosPartenaires/InfosPartenaire:index' }
+#offreSante:
+#    path: /offre_Sante
+#    defaults: { _controller: 'AppBundle:OffresSante/OffreSante:index' }
+#offreSBilan:
+#    path: /offre_Sante-Bilan
+#    defaults: { _controller: 'AppBundle:OffresSante/OffreSante:BilanSante' }
+#situation:
+#    path: /situation
+#    defaults: { _controller: 'AppBundle:SituationParticuliere/Situation:index' }
+#depliant:
+#    path: /depliant
+#    defaults: { _controller: 'AppBundle:Depliant:index' }
+#consulService:
+#    path: /consul_Service
+#    defaults: { _controller: 'AppBundle:Partenaire/EspacePartenaire:consulService' }
+#envoi:
+#    path: /envoi
+#    defaults: { _controller: 'AppBundle:Partenaire/EspacePartenaire:envoi' }
+#envoiSupport:
+#    path: /envoi_support
+#    defaults: { _controller: 'AppBundle:Partenaire/CommandeSupport:envoiSupport' }
+#contact:
+#    path: /contact
+#    defaults: { _controller: 'AppBundle:Contact:index' }
+#RecapitulatifDetail:
+#    path: /Recapitulatif_Detail
+#    defaults: { _controller: 'AppBundle:Partenaire/PartenaireDossier:detail'}
+#DetailDossierPartenaireModalAjax:
+#    path: /Detail-dossier/{id}
+#    defaults: { _controller: 'AppBundle:Gestionnaire/PSA:detailModalAjax'}
+#    options:
+#        expose: true
+

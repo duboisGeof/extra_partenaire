@@ -1,0 +1,74 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+		'@AppBundle/Resources/public/css/datatableBoostrap.css' 
+		'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+		'@AppBundle/Resources/public/css/table.css' 
+		'@AppBundle/Resources/public/css/datepicker.css' 	
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+{% block body %}
+<div class="r_cnx_colonneG full">
+   <h2> Liste des newsletters</h2>
+   <div id="reloadNews">
+      <table id="listeNewsletter" class='table table-striped table-bordered table-hover '>
+         <thead>
+            <tr>
+               <th>Titre</th>
+               <th>Agent</th>
+               <th>Date création</th>
+               <th>Action</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for liste in listes %}
+            <tr>
+               <td>{{liste.titre}}</td>
+               <td>{{liste.username}}</td>
+               <td>{{liste.dateCreation|date("d/m/Y") }}</td>
+               <td>
+                  <a class="btn btn-primary btn-sm envoiNewsletterId id{{liste.id}}" href="{{ path('ModifierNewsletters', {'id':liste.id}) }}"role="">Modifier</a>
+                  <a class="btn btn-success btn-sm detailNewsletterId id{{liste.id}}" href="{{ path('ApercuNewsletterIdModalAjax', {'id':liste.id}) }}" data-toggle="modal" data-target="#myModal" role="button">Apercu</a>
+                  <a class="btn btn-success btn-sm creationPdfId id{{liste.id}}" role="">Pdf</a>
+                  <a class="btn btn-danger btn-sm suppressionNewsletterId id{{liste.id}}" data-toggle="modal" data-target="#modalSuppressionNewsletter">Supprimer</a>
+               </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+</div>
+<div class="ad" style="margin-left: 40px"></div>
+<div class="modal hide fade" id="modalSuppressionNewsletter">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h3>&#9888;&nbsp;&nbsp;Confirmer la suppression</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="refuseCompteModalClose">&times;</button>
+         </div>
+         <div class="modal-body">
+            <p>Etes-vous sûr(e) de vouloir supprimer cette newsletter ?</p>
+            <div class="modal-footer">
+               <a href="#" class="btn btn btn-primary btn-sm pull-left" id="refuseCompteModalNo">Annuler</a>
+               <a href="#" class="btn btn-primary btn-sm" id="confirmSuppressionNewsletter">Confirmer</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+{% block footer %}
+	{{ parent() }}
+	{% javascripts
+		'@AppBundle/Resources/public/js/datatable.min.js'
+		'@AppBundle/Resources/public/js/newsletter.js'
+	%}
+	<script src="{{ asset_url }}" charset="UTF-8"></script>
+	{% endjavascripts %}
+{% endblock %}
+

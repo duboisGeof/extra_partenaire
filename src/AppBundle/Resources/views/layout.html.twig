@@ -1,0 +1,53 @@
+{% set path = app.request.pathinfo|split('/') %}
+<!DOCTYPE html>
+<html>
+    <head>	
+        {% image '@AppBundle/Resources/public/img/favicon.ico' %}
+            <link rel="shortcut icon" href="{{ asset_url }}" type="image/x-icon">
+        {% endimage %}
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        {% block head %}
+            {%- include '@App/Templates/head.html.twig' -%}
+        {% endblock %}
+		
+	 
+    </head>
+    <body>
+        <div class="container-fluid">
+        <section class="background-bleu">
+            <div class="row">
+                <div class="col-md-12">
+                    {%- include '@App/Templates/entete.html.twig' -%}
+                </div>
+            </div>
+        </section>
+        </div>
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                    {% block menu %}
+                        <div class="col-md-2 styleMenu">
+                        {% if path[1] == 'gestionnaire' %}	
+                            {%- include '@App/Templates/menuGestionnaire.html.twig' -%}
+                            {% elseif path[1] == 'partenaire' %}	
+                                {%- include '@App/Templates/menuPartenaire.html.twig' -%}
+                            {% else %}
+                                {%- include '@App/Templates/menu.html.twig' -%}
+                        {% endif %}
+                        </div>
+                {% endblock %}
+                <div class="col-md-10 d-flex justify-content-center">
+                    {% block body %}{% endblock %}
+                    {% block connect %} {% endblock %}
+                </div>
+            </div>
+         </div>
+             <div class="row">
+                <div class="col-md-12 fixBottom">
+                    {% block footer %}
+                        {%- include '@App/Templates/footer.html.twig' -%}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block head %}
+	{{ parent() }}
+	{% block stylesheets %}
+		{% stylesheets filter='cssrewrite'
+
+			'@AppBundle/Resources/public/css/buttons.dataTables.min.css' 
+			'@AppBundle/Resources/public/css/table.css' 
+
+			%}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	{% endblock %}
+{% endblock %}
+{% block body %}
+<div class="r_cnx_colonneG full">	
+
+    <h2> Liste des offres partenaires</h2>
+    <div class="block">
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom de l'offre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for offre in offres %}
+                <tr>
+                    <td>{{ offre.nom_offre }}</td>
+                    <td>{{ offre.description }}</td>
+                    <td>{{ offre.dateFin }}</td>
+                    <td>
+                        <a href="{{ path('ModifierOffresPartenaire', {'id': offre.id}) }}" class="btn btn-info btn-sm" role="button">Modifier</a>
+                        <a href="{{ path('SupprimerOffresPartenaire', {'id': offre.id}) }}" class="btn btn-danger btn-sm" role="button" id="supprimer">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
